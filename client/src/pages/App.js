@@ -1,27 +1,27 @@
-import { useEffect } from 'react'
 import {Routes, Route, useLocation} from 'react-router-dom'
-import useAuth from '../hooks/useAuth';
 import Nav from "../components/Nav";
-import AuthForm from "./Auth"
-import Profile from './Profile';
-import Welcome from './Welcome';
+import Login from "./landing/Login"
+import Profile from './profile/Profile';
+import Welcome from './landing/Welcome';
 import ProtectedRoutes from '../components/ProtectedRoutes';
-
+import { useCheckUserQuery } from '../api/authSlice';
+import { useSelector } from 'react-redux';
+import Signup from './landing/Signup';
 
 function App() {
   const location = useLocation()
-  const { checkUser } = useAuth()
+  const user = useSelector(state => state.user.user)
+  useCheckUserQuery()
 
-  useEffect(() => {
-    checkUser()
-  },[])
+  
 
   return (
     <div >
-      {location.pathname !== '/auth' && <Nav/>}
+      {!['/login', '/signup'].includes(location.pathname) && <Nav/>}
       <Routes>
-        <Route path={'/'} element={<Welcome />} />
-        <Route path={'/auth'} element={<AuthForm />} />
+        <Route path={'/'} element={user? <Profile/> : <Welcome/>} />
+        <Route path={'/login'} element={<Login />} />
+        <Route path={'/signup'} element={<Signup/>} />
         <Route element={<ProtectedRoutes/>}>
           <Route path={'/profile'} element={<Profile/>} />
         </Route>
