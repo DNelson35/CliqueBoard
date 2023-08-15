@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tasks
+  # resources :groups
+  # resources :group_widgets, only: [:create, :show, :index]
+  # resources :widgets, only: [:create, :show, :index]
+
   post '/signup', to: 'users#create'
 
   post '/login', to: 'sessions#create'
