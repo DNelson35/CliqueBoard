@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # resources :groups
   # resources :group_widgets, only: [:create, :show, :index]
   # resources :widgets, only: [:create, :show, :index]
+  resources :users, only: [:create, :show ]
 
   post '/signup', to: 'users#create'
 

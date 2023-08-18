@@ -17,9 +17,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_192316) do
   create_table "group_members", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
+    t.string "invitation_status"
+    t.string "invitation_code"
+    t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["invitation_code"], name: "index_group_members_on_invitation_code", unique: true
+    t.index ["user_id", "group_id"], name: "index_group_members_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_group_members_on_user_id"
   end
 
@@ -36,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_192316) do
     t.bigint "admin_id"
     t.string "name"
     t.string "description"
-    t.string "group_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_groups_on_admin_id"
