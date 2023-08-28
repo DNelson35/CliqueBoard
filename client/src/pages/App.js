@@ -4,6 +4,7 @@ import Profile from './profile/Profile';
 import Welcome from './landing/Welcome';
 import Signup from './landing/Signup';
 import Groups from "./profile/Groups";
+import DashBoard from "./profile/DashBoard";
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import {Routes, Route, useLocation} from 'react-router-dom'
 import { useCheckUserQuery } from '../api/authSlice';
@@ -12,10 +13,10 @@ import { useSelector } from 'react-redux';
 function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
+
+  console.log(user)
   useCheckUserQuery()
 
-  
-console.log(user)
   return (
     <div >
       {!['/login', '/signup'].includes(location.pathname) && <Nav/>}
@@ -24,8 +25,9 @@ console.log(user)
         <Route path={'/login'} element={<Login />} />
         <Route path={'/signup'} element={<Signup/>} />
         <Route element={<ProtectedRoutes/>}>
-          <Route path={'/profile'} element={<Profile/>} />
+          <Route path={'/dashboard'} element={<DashBoard/>} />
           <Route path={'/groups'} element={<Groups/>} />
+          <Route path={'/profile'} element={<Profile/>} />
         </Route>
       </Routes>
     </div>
