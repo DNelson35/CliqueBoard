@@ -26,8 +26,8 @@ export const userApi = createApi({
             url: 'logout',
             method: 'DELETE',
         }),
-    })
+    }),
   }),
 })
 
-export const { useCheckUserQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation } = userApi
+export const { useCheckUserQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation} = userApi
