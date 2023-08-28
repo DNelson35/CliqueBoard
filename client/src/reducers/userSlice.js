@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { userApi } from '../api/authSlice';
 
 const initialState = {
-  user: null
+  user: null,
 }
 
 const userSlice = createSlice({
@@ -10,7 +10,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-        return action.payload
+      return action.payload
     }
   },
   extraReducers: (builder) => {
