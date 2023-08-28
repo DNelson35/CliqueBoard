@@ -1,13 +1,28 @@
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSignOutUserMutation } from '../api/authSlice.js'
+import { RxDashboard } from 'react-icons/rx'
+import { TbChartBubble, TbUserCircle, TbMessageCircle2 } from 'react-icons/tb'
+import { FaGripLinesVertical } from 'react-icons/fa'
+import { CgLogOut } from 'react-icons/cg'
+import Logo from './Logo'
+import GroupToggle from './GroupToggle.js'
 
 
 function Nav() {
+    // clean up large sections of code into seprate components and clean up reuasble components
     const user = useSelector(state => state.user.user)
     const navigate = useNavigate()
     const [signOut] = useSignOutUserMutation()
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleVerticalBar = () => {
+        setIsOpen(!isOpen);
+    };
+
     
 
     const logOut = async () => {
@@ -18,27 +33,31 @@ function Nav() {
     return (
         <>
             {user? ( 
-                <nav className="flex flex-col absolute bg-blue-500 p-4 h-screen w-40">
-                    <div className="text-white mb-20">
-                        <h1 className="text-lg font-bold">CliqueBoard</h1>
-                        <p>Logo</p>
-                    </div>
-                    <div className="flex flex-col gap-4 mt-auto mb-auto space-y-10">
-                        <NavLink className="text-white">Logo</NavLink>
-                        <NavLink className="text-white">Profile Pic</NavLink>
-                        <NavLink to='/groups' className="text-white">Groups</NavLink>
-                        <NavLink className="text-white">Create Group</NavLink>
-                        <NavLink className="text-white">Manage Groups</NavLink>
-                    </div>
-                    <div className="mt-auto">
-                        <button className="bg-white text-blue-500 px-4 py-2 rounded" onClick={logOut}>Sign Out</button>
-                    </div>
-                </nav>
+                <div>
+                    <nav className="flex flex-col fixed bg-slate-700 p-4 h-screen w-20 z-10">
+                        <div className="flex-wrap justify-center text-white mb-20">
+                            <Logo bgColor={'slate-700'}/>
+                            <h1 className="text-lg font-bold ml-2">CB</h1>
+                        </div>
+                        <div className="flex flex-col gap-4 mt-auto mb-auto space-y-10">
+                            <RxDashboard title='dashboard' onClick={() => navigate('/dashboard')} className='text-white text-3xl' />
+                            <TbChartBubble title='groups' onClick={() => navigate('/groups')} className='text-white text-3xl'/>
+                            <TbUserCircle title='profile' onClick={() => navigate('/profile')} className='text-white text-3xl'/>
+                            <TbMessageCircle2 className='text-white text-3xl'/>
+                        </div>
+                        <div className="mt-auto">
+                            <CgLogOut title='logout' onClick={() => logOut()} className='text-white text-3xl'/>
+                        </div>
+                        <FaGripLinesVertical onClick={toggleVerticalBar} className='absolute top-1/2 right-0 text-white text-2xl'/>
+                    </nav>
+                    <GroupToggle isOpen={isOpen}/>
+                </div>
             ) : (
+                
                 <nav className="flex justify-between items-center bg-white p-4">
-                    <div className="text-black">
-                        <h1 className="text-lg font-bold">CliqueBoard</h1>
-                        <p>Log</p>
+                    <div className="text-black flex">
+                        <Logo bgColor={'white'}/>
+                        <h1 className="text-lg font-bold pl-5 pt-1.5">CliqueBoard</h1>
                     </div>
                     <div className="flex gap-4">
                         <NavLink className="text-black">Welcome</NavLink>
@@ -50,6 +69,7 @@ function Nav() {
                         <NavLink to='/signup' className="bg-blue-600 text-white px-4 py-2 rounded">Signup</NavLink>
                     </div>
                 </nav>
+                
             )}
         </>
     )
