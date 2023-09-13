@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { userApi } from '../api/authSlice';
+import { userApi } from '../api/authApi';
 
 const initialState = {
   user: null,
@@ -11,7 +11,11 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       return action.payload
-    }
+    },
+    addGroupToUser: (state, action) => {
+      state.user.groups.push(action.payload)
+      console.log(action.payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -41,5 +45,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, addGroupToUser } = userSlice.actions;
 export default userSlice.reducer;
