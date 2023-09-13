@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSignUpUserMutation } from '../../api/authSlice'
+import { useSignUpUserMutation } from '../../api/authApi'
 
 function Signup() {
 
