@@ -1,7 +1,6 @@
 require 'securerandom'
 class GroupsController < ApplicationController
-# TODO: add a channel for a websocket to send the invitation to the user in real time
-# TODO: design set up for how a user should recieve the invitation and how they should submit to join the group
+
 # TODO: add functionality to remove members from the group
 
     def create 
