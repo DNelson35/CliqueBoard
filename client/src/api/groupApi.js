@@ -14,8 +14,14 @@ export const groupApi = createApi({
             body: groupInfo,
         }),
     }),
-   
+    sendInvitation: builder.mutation({
+      query: (invitationInfo) => ({
+        url: 'invitations',
+        method: 'POST',
+        body: invitationInfo,
+      }),
+    }),
   }),
 })
 
-export const {useGetGroupsQuery, useCreateGroupsMutation } = groupApi
+export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation } = groupApi
