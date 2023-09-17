@@ -4,11 +4,12 @@ import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSignOutUserMutation } from '../api/authApi.js'
 import { RxDashboard } from 'react-icons/rx'
-import { TbChartBubble, TbUserCircle, TbMessageCircle2 } from 'react-icons/tb'
+import { TbUserCircle, TbMessageCircle2 } from 'react-icons/tb'
 import { FaGripLinesVertical } from 'react-icons/fa'
 import { CgLogOut } from 'react-icons/cg'
 import Logo from './Logo'
 import GroupToggle from './GroupToggle.js'
+import InvitationReceiver from './InvitationReciver.js'
 
 
 function Nav() {
@@ -22,8 +23,6 @@ function Nav() {
     const toggleVerticalBar = () => {
         setIsOpen(!isOpen);
     };
-
-    
 
     const logOut = async () => {
         await signOut()
@@ -40,8 +39,8 @@ function Nav() {
                             <h1 className="text-lg font-bold ml-2">CB</h1>
                         </div>
                         <div className="flex flex-col gap-4 mt-auto mb-auto space-y-10">
+                            <InvitationReceiver/>
                             <RxDashboard title='dashboard' onClick={() => navigate('/dashboard')} className='text-white text-3xl' />
-                            <TbChartBubble title='groups' onClick={() => navigate('/groups')} className='text-white text-3xl'/>
                             <TbUserCircle title='profile' onClick={() => navigate('/profile')} className='text-white text-3xl'/>
                             <TbMessageCircle2 className='text-white text-3xl'/>
                         </div>
