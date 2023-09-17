@@ -157,6 +157,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.8.1)
     spring (4.1.1)
     thor (1.2.2)
     timeout (0.4.0)
@@ -172,6 +173,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  actioncable
+  actionpack
   active_model_serializers (~> 0.10.13)
   bcrypt (~> 3.1.7)
   bootsnap
@@ -180,6 +183,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
+  redis (~> 4.0)
   spring
   tzinfo-data
 
