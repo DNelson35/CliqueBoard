@@ -16,6 +16,9 @@ const userSlice = createSlice({
       state.user.groups.push(action.payload)
       console.log(action.payload)
     },
+    addInvite: (state, action) => {
+      state.user.received_invitations.push(action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -45,5 +48,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser, addGroupToUser } = userSlice.actions;
+export const { setUser, addGroupToUser, addInvite } = userSlice.actions;
 export default userSlice.reducer;

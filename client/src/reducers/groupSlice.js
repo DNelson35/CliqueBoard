@@ -3,7 +3,6 @@ import { groupApi } from '../api/groupApi';
 
 const initialState = {
   groups: null,
-  invitations: [],
 }
 
 const groupSlice = createSlice({

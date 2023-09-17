@@ -10,6 +10,7 @@ import { CgLogOut } from 'react-icons/cg'
 import Logo from './Logo'
 import GroupToggle from './GroupToggle.js'
 import InvitationReceiver from './InvitationReciver.js'
+import NotificationDisplay from './NotificationDisplay.js'
 
 
 function Nav() {
@@ -19,6 +20,7 @@ function Nav() {
     const [signOut] = useSignOutUserMutation()
 
     const [isOpen, setIsOpen] = useState(false);
+    const [notifcationOpen, setNotificationOpen] = useState(false)
 
     const toggleVerticalBar = () => {
         setIsOpen(!isOpen);
@@ -39,7 +41,7 @@ function Nav() {
                             <h1 className="text-lg font-bold ml-2">CB</h1>
                         </div>
                         <div className="flex flex-col gap-4 mt-auto mb-auto space-y-10">
-                            <InvitationReceiver/>
+                            <InvitationReceiver user={user} open={notifcationOpen} setOpen={setNotificationOpen}/>
                             <RxDashboard title='dashboard' onClick={() => navigate('/dashboard')} className='text-white text-3xl' />
                             <TbUserCircle title='profile' onClick={() => navigate('/profile')} className='text-white text-3xl'/>
                             <TbMessageCircle2 className='text-white text-3xl'/>
@@ -50,6 +52,7 @@ function Nav() {
                         <FaGripLinesVertical onClick={toggleVerticalBar} className='absolute top-1/2 right-0 text-white text-2xl'/>
                     </nav>
                     <GroupToggle isOpen={isOpen}/>
+                    <NotificationDisplay notifcationOpen={notifcationOpen} user={user}/>
                 </div>
             ) : (
                 
