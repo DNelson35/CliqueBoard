@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :users, only: [:update, :index ]
   resources :groups, only: [:create, :show, :index]
-  resources :invitations, only: [:create]
+  resources :invitations, only: [:create, :destroy]
 
   # patch 'users/:id/upload_image', to: 'users#upload_image'
   post '/signup', to: 'users#create'
