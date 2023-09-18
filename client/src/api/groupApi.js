@@ -21,7 +21,13 @@ export const groupApi = createApi({
         body: invitationInfo,
       }),
     }),
+    deleteInvitation: builder.mutation({
+      query: (invitation_id) => ({
+        url: `invitations/${invitation_id}`,
+        method: 'DELETE',
+      })
+    })
   }),
 })
 
-export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation } = groupApi
+export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation, useDeleteInvitationMutation } = groupApi
