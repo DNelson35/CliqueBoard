@@ -1,4 +1,3 @@
-// src/components/InvitationReceiver.js
 import React, { useEffect } from 'react';
 import cable from '../Cable'
 import {RiNotification3Line} from 'react-icons/ri'
