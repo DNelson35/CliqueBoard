@@ -15,7 +15,7 @@ function GroupToggle({isOpen}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const groups = user.groups?.map(group => (
+    const groups = user.joined_groups?.map(group => (
         <div key={group.id} className='flex justify-center my-2'>
             <div className='bg-slate-700 w-1/2 h-10'>
                 <h1 className='text-white font-bold' onClick={() => navigate(`/group/${group.id}`)}>{group.name}</h1>
@@ -30,6 +30,7 @@ function GroupToggle({isOpen}) {
     const handleGroupSubmit = async (e) => {
         e.preventDefault()
         const newGroup = await createGroup(groupInfo)
+        console.log(newGroup.data)
         dispatch(addGroupToUser(newGroup.data))
     }
     

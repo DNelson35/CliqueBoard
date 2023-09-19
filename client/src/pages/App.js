@@ -15,13 +15,12 @@ function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
   const groups = useSelector(state => state.groups.groups)
-  console.log(groups)
 
-  useGetGroupsQuery()
+  const {isLoading: groupsLoading} = useGetGroupsQuery()
   const {data: allUsers} = useAllUsersQuery()
   const {isLoading } = useCheckUserQuery()
 
-  return isLoading? <div>loading...</div> : (
+  return isLoading || groupsLoading? <div>loading...</div> : (
     <div >
       {!['/login', '/signup'].includes(location.pathname) && <Nav/>}
       <Routes>
