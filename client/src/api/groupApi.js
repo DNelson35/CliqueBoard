@@ -26,8 +26,15 @@ export const groupApi = createApi({
         url: `invitations/${invitation_id}`,
         method: 'DELETE',
       })
-    })
+    }),
+    joinGroup: builder.mutation({
+      query: (group_id) => ({
+        url: 'join',
+        method: 'POST',
+        body: group_id,
+      })
+    }),
   }),
 })
 
-export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation, useDeleteInvitationMutation } = groupApi
+export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation, useDeleteInvitationMutation, useJoinGroupMutation } = groupApi
