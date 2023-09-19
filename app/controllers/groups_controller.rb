@@ -6,11 +6,12 @@ class GroupsController < ApplicationController
     def create 
         code = generate_access_code
         group = @current_user.groups.create!(group_params.merge(access_code: code))
+        group.group_members.create!(user_id: @current_user.id, group_id: group.id)
         render json: group, status: :created
     end
 
     def index
-        group = @current_user.groups.all
+        group = @current_user.joined_groups
         render json: group, status: :ok
     end
 
@@ -24,7 +25,7 @@ class GroupsController < ApplicationController
         group = Group.find_by(access_code: params[:access_code])
         if group
             member = group.group_members.create!(user_id: @current_user.id)
-            render json: member, status: :created
+            render json: group, status: :created
         else
             render json: {error: "invalid access code"}, status: :unauthorized
         end
