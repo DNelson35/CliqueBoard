@@ -4,7 +4,8 @@ class GroupsController < ApplicationController
 # TODO: add functionality to remove members from the group
 
     def create 
-        group = @current_user.groups.create!(group_params)
+        code = generate_access_code
+        group = @current_user.groups.create!(group_params.merge(access_code: code))
         render json: group, status: :created
     end
 
@@ -18,6 +19,19 @@ class GroupsController < ApplicationController
         group.destroy
         head :no_content
     end
+
+    def join
+        group = Group.find_by(access_code: params[:access_code])
+        if group
+            member = group.group_members.create!(user_id: @current_user.id)
+            render json: member, status: :created
+        else
+            render json: {error: "invalid access code"}, status: :unauthorized
+        end
+    end
+
+
+    # TODO: expample of how to implement the invitation invite with the experation. this has been moved to the invitation controller logic for the experation still needs to be implemented
 
     # def invite 
     #     group = Group.find(params[:id])
@@ -34,6 +48,10 @@ class GroupsController < ApplicationController
     private
 
     def group_params
-        params.permit(:name, :description )
+        params.require(:group).permit(:name, :description)
+    end
+
+    def generate_access_code
+        access_code = SecureRandom.alphanumeric(5)
     end
 end
