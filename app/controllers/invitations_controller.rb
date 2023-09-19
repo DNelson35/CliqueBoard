@@ -1,8 +1,8 @@
 class InvitationsController < ApplicationController
     def create 
         recipient = User.find(params[:recipient_id])
-        group = params[:group_name]
-        message = "#{@current_user.name} wants to invite you to #{group} group. If you wish to join, please enter the following access key: (placeHolder). This access key will expire in 48 hours. "
+        group = Group.find(params[:group_id])
+        message = "#{@current_user.name} wants to invite you to #{group.name} group. If you wish to join, please enter the following access key: (#{group.access_code}). "
         invitation = Invitation.create(sender: @current_user, recipient: recipient, message: message)
         InvitationChannel.broadcast_to(recipient, { invitation: invitation })
     end
@@ -13,7 +13,10 @@ class InvitationsController < ApplicationController
         head :no_content
     end
 
-    #TODO: set up a index for the current user invitations, do this so i can have a list of all invitations to set the notifications on the front end, also i will need an delete route so invitations can be deleted.
+    private
 
-    #TODO: set up the access code to be generated and for it to work.
+    # def encypt_code(group_id)
+    #     group = Group.find_by_id(group_id)
+    #     group.access_code.
+    # end
 end
