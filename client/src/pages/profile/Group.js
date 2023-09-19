@@ -19,7 +19,8 @@ function Group({ allUsers }) {
       <li className='text-white pl-2'>{user.name}</li>
       <button className='text-white pr-3' onClick={() => sendInvite({
         recipient_id: user.id,
-        group_name: group.name
+        group_name: group.name,
+        group_id: group.id
       })}>Invite</button>
     </div> )
 
@@ -32,10 +33,10 @@ function Group({ allUsers }) {
   }
 
   return (
-    <div className='h-screen'>
+    <div className='h-screen w-screen'>
       <div className="flex items-start">
         <div className="flex-grow flex justify-end items-start w-1/2 ml-20">
-          <p>{group.name}</p>
+          <p className='text-3xl font-bold'>{group.name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
           <button onClick={() => setDisplayed(!displayed)}>Invite 🔍</button>
@@ -51,6 +52,11 @@ function Group({ allUsers }) {
             </div>
           </div>
           : null}
+        <div className='flex justify-end h-auto'>
+          <div className='flex border border-red-500 w-1/6 h-52 mr-5 mt-5 justify-center'>
+            <h1 className=' text-lg font-bold'>Users</h1>
+          </div>
+        </div>
     </div>
   )
 }
