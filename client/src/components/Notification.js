@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDeleteInvitationMutation, useJoinGroupMutation } from '../api/groupApi'
 import { useDispatch } from 'react-redux'
-import { deleteInvite } from '../reducers/userSlice'
+import { addGroupToUser, deleteInvite } from '../reducers/userSlice'
 
 function Notification({note}) {
     const [open, setOpen] = useState(false)
@@ -29,16 +29,17 @@ function Notification({note}) {
     const onChange = (e) => {
       setCode({...code, access_code: e.target.value})
     }
-    console.log(code)
 
     const handleDelete = () => {
       deleteInvitation(note.id)
       dispatch(deleteInvite(note.id))
     }
 
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
       e.preventDefault()
-      joinGroup(code)
+      const newGroup = await joinGroup(code)
+      console.log(newGroup.data)
+      dispatch(addGroupToUser(newGroup.data))
     }
 
   return (
