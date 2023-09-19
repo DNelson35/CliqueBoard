@@ -15,7 +15,7 @@ function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
   const groups = useSelector(state => state.groups.groups)
-  console.log(user)
+  console.log(groups)
 
   useGetGroupsQuery()
   const {data: allUsers} = useAllUsersQuery()

@@ -6,7 +6,6 @@ function Profile() {
   return (
     <div className='flex ml-[15%] w-screen h-screen'>
       <div className='flex justify-between w-1/2 h-1/2'>
-      {/* TODO: set up in seprate component ProfilePic finsih setup */}
         <div className='flex justify-center items-center h-32 w-32 bg-pink-200 rounded-full' >
           <p className='text-black text-6xl'>{user.name[0]}</p>
         </div>
