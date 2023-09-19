@@ -13,7 +13,7 @@ const userSlice = createSlice({
       return action.payload
     },
     addGroupToUser: (state, action) => {
-      state.user.groups.push(action.payload)
+      state.user.joined_groups.push(action.payload)
     },
     addInvite: (state, action) => {
       state.user.received_invitations.push(action.payload)

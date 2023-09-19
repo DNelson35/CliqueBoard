@@ -10,11 +10,16 @@ function Group({ allUsers }) {
   const [displayed, setDisplayed] = useState(false)
   const {groupId} = useParams()
   const user = useSelector(state => state.user.user)
+  const userGroups = useSelector(state => state.groups.groups)
+  
 
-  const group = user.groups?.find(group => group.id === parseInt(groupId))
+  const group = userGroups?.find(group => group.id === parseInt(groupId))
+  console.log(userGroups)
   const [sendInvite] = useSendInvitationMutation()
+  const userList = (group.users.length > 0)? group.users.map(user => <li key={user.id}>{user.username}</li>) : null
+  
 
-  const usersList = filteredUsers?.map(user =>
+  const filteredUsersList = filteredUsers?.map(user =>
     <div key={user.id} className='flex justify-between'>
       <li className='text-white pl-2'>{user.name}</li>
       <button className='text-white pr-3' onClick={() => sendInvite({
@@ -47,14 +52,17 @@ function Group({ allUsers }) {
             <div className='relative flex-col items-center'>
               <input value={search} onChange={onChange} placeholder='Search...' className='w-full mb-2' />
               <ul>
-                {usersList}
+                {filteredUsersList}
               </ul>
             </div>
           </div>
           : null}
         <div className='flex justify-end h-auto'>
-          <div className='flex border border-red-500 w-1/6 h-52 mr-5 mt-5 justify-center'>
-            <h1 className=' text-lg font-bold'>Users</h1>
+          <div className='flex-col border border-red-500 w-1/6 h-52 mr-5 mt-5 justify-center'>
+            <h1 className=' text-lg font-bold text-center'>Users</h1>
+            <ul className='flex-col text-center'>
+              {userList}
+            </ul>
           </div>
         </div>
     </div>

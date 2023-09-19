@@ -11,7 +11,7 @@ const groupSlice = createSlice({
   reducers: {
     setGroups: (state, action) => {
       return action.payload
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -23,9 +23,21 @@ const groupSlice = createSlice({
     builder.addMatcher(
       groupApi.endpoints.createGroups.matchFulfilled,
       (state, {payload}) => {
-        state.groups = {...state.groups, payload}
+        state.groups.push(payload)
       }
-    ) 
+    )
+    builder.addMatcher(
+      groupApi.endpoints.joinGroup.matchFulfilled,
+      (state, { payload }) => {
+        state.groups = state.groups.map(group => {
+          if (group.id === payload.id) {
+            return payload;
+          } else {
+            return group;
+          }
+        });
+      }
+    );    
   }
 });
 
