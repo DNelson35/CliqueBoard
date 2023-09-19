@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :invitations, only: [:create, :destroy]
 
   # patch 'users/:id/upload_image', to: 'users#upload_image'
+  post '/join', to: 'groups#join'
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
   get '/me', to: 'users#show'
