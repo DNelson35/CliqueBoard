@@ -21,7 +21,7 @@ const InvitationReceiver = ({user, open, setOpen}) => {
 
   return(
     <div className='flex'>
-      <RiNotification3Line className='text-white text-3xl' onClick={() => setOpen(!open)}/>
+      <RiNotification3Line title='Notifications' className='text-white text-3xl' onClick={() => setOpen(!open)}/>
       {user.received_invitations.length > 0? 
       <div className='flex relative text-white w-5 h-5 rounded-full bg-blue-400 justify-center place-items-center -left-[25%] -top-[20%]'>
         {user.received_invitations.length}

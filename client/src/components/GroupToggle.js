@@ -36,7 +36,7 @@ function GroupToggle({isOpen}) {
     
 
   return (
-    <div className={`fixed top-0 left-0 h-screen w-1/5 bg-gray-200 transition-all duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div className={`fixed top-0 left-0 h-screen w-1/5 bg-gray-200 transition-all duration-300 z-10 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className='flex justify-end'>
             <button className='w-20 h-10 rounded-lg bg-purple-400 m-3' onClick={() => setIsOn(!isOn)}>+ Group</button>
         </div>

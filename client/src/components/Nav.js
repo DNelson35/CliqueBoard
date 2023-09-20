@@ -35,7 +35,7 @@ function Nav() {
         <>
             {user? ( 
                 <div>
-                    <nav className="flex flex-col fixed bg-slate-700 p-4 h-screen w-20 z-10">
+                    <nav className="flex flex-col fixed bg-slate-700 p-4 h-screen w-20 z-20">
                         <div className="flex-wrap justify-center text-white mb-20">
                             <Logo bgColor={'slate-700'}/>
                             <h1 className="text-lg font-bold ml-2">CB</h1>
