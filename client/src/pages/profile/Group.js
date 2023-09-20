@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
+import Calendar from '../../components/Calendar'
 
 
 function Group({ allUsers }) {
@@ -58,13 +59,17 @@ function Group({ allUsers }) {
           </div>
           : null}
         <div className='flex justify-end h-auto'>
-          <div className='flex-col border border-red-500 w-1/6 h-52 mr-5 mt-5 justify-center'>
+          <div className='flex justify-center w-screen'>
+            <Calendar/>
+          </div>
+          <div className='flex-col border border-black w-[10%] h-52 mr-5 mt-5 justify-center'>
             <h1 className=' text-lg font-bold text-center'>Users</h1>
             <ul className='flex-col text-center'>
               {userList}
             </ul>
           </div>
         </div>
+        
     </div>
   )
 }
