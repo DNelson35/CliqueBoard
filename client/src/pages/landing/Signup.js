@@ -6,6 +6,9 @@ function Signup() {
 
     const [formData, setFormData] = useState({
         username: '',
+        email_address: '',
+        name: '',
+        age: '',
         password: '',
         password_confirmation: '',
     })
@@ -35,6 +38,30 @@ function Signup() {
             className="w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
             name='username'
             placeholder="john smith" onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Email Address</label>
+          <input
+            className="w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+            name='email_address'
+            placeholder="johnsmith@test.com" onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Name</label>
+          <input
+            className="w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+            name='name'
+            placeholder="john" onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>age</label>
+          <input
+            className="w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+            name='age'
+            placeholder="30" onChange={handleChange}
           />
         </div>
         <div>
