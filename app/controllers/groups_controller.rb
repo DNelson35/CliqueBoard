@@ -31,6 +31,8 @@ class GroupsController < ApplicationController
         end
     end
 
+      
+
 
     # TODO: expample of how to implement the invitation invite with the experation. this has been moved to the invitation controller logic for the experation still needs to be implemented
 

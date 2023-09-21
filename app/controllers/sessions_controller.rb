@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
     def create 
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
-            session[:user_id] = user.id 
+            user.update!(status: 'Online')
+            session[:user_id] = user.id
             render json: user, status: :created
         else
             render json: {errors: 'Invalid Username or Password'}, status: :unauthorized
@@ -12,7 +13,11 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+        @current_user.update!(status: 'Offline')
         session.delete :user_id
         head :no_content
     end
+
+    private
+
 end
