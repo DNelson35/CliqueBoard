@@ -49,10 +49,10 @@ function Group({ allUsers }) {
         </div>
       </div>
       {displayed?
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-slate-600 ">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-slate-600 z-20 ">
             <div className='relative flex-col items-center'>
               <input value={search} onChange={onChange} placeholder='Search...' className='w-full mb-2' />
-              <ul>
+              <ul >
                 {filteredUsersList}
               </ul>
             </div>
