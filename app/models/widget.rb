@@ -1,5 +1,4 @@
 class Widget < ApplicationRecord
-    has_many :group_widgets
-    has_many :users, through: :group_widgets
-    has_many :widget_data           
+    has_many :widget_data
+    has_many :groups, through: :widget_data         
 end
