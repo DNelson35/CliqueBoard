@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:update, :index ]
   resources :groups, only: [:create, :show, :index]
   resources :invitations, only: [:create, :destroy]
+  resources :widget_data, only: [:create]
 
   # patch 'users/:id/upload_image', to: 'users#upload_image'
   post '/join', to: 'groups#join'
