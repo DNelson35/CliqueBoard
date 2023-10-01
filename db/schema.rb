@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_164900) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_170224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,15 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_164900) do
     t.index ["group_id"], name: "index_group_members_on_group_id"
     t.index ["user_id", "group_id"], name: "index_group_members_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_group_members_on_user_id"
-  end
-
-  create_table "group_widgets", force: :cascade do |t|
-    t.bigint "group_id"
-    t.bigint "widget_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_widgets_on_group_id"
-    t.index ["widget_id"], name: "index_group_widgets_on_widget_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -82,11 +73,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_164900) do
   end
 
   create_table "widget_data", force: :cascade do |t|
+    t.bigint "group_id"
     t.bigint "widget_id"
-    t.string "data_key"
-    t.string "data_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "data_key"
+    t.string "data_value"
+    t.index ["group_id"], name: "index_widget_data_on_group_id"
     t.index ["widget_id"], name: "index_widget_data_on_widget_id"
   end
 
@@ -98,12 +91,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_164900) do
 
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
-  add_foreign_key "group_widgets", "groups"
-  add_foreign_key "group_widgets", "widgets"
   add_foreign_key "groups", "users", column: "admin_id"
   add_foreign_key "invitations", "users", column: "recipient_id"
   add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "tasks", "group_members"
   add_foreign_key "tasks", "groups"
   add_foreign_key "tasks", "users"
+  add_foreign_key "widget_data", "groups"
+  add_foreign_key "widget_data", "widgets"
 end
