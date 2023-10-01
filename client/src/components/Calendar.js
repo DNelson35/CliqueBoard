@@ -22,11 +22,13 @@ function Calendar() {
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        weekends={false}
+        weekends={true}
         dateClick={handleDateClick}
         events={[
-          { title: 'event 1', date: '2021-05-07' },
-          { title: 'event 2', date: '2021-05-17' }
+          { title: 'event 1', date: '2023-09-07' },
+          { title: 'event 3', date: '2023-09-07' },
+          { title: 'event 2', date: '2023-09-17' },
+          { title: 'event 4', date: '2023-09-17' },
         ]}
         eventContent={renderEventContent}
         height={'auto'}
