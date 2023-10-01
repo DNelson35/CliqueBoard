@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
     def index
         group = @current_user.joined_groups
         render json: group, status: :ok
+        
     end
 
     def destroy
