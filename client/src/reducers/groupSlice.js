@@ -12,6 +12,11 @@ const groupSlice = createSlice({
     setGroups: (state, action) => {
       return action.payload
     },
+    addCalendarEvent: (state, action) => {
+      const group = state.groups.find(group => action.payload.group_id === group.id)
+      const widget = group.widgets.Calendar
+      widget.push(action.payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -35,11 +40,17 @@ const groupSlice = createSlice({
           } else {
             return group;
           }
-        });
+        })
       }
-    );    
+    )
+    // builder.addMatcher(
+    //   groupApi.endpoints.createEvent.matchFulfilled,
+    //   (state, {payload}) => {
+    //     console.log(payload)
+    //   }
+    // )    
   }
 });
 
-export const { setGroups } = groupSlice.actions;
+export const { setGroups, addCalendarEvent } = groupSlice.actions;
 export default groupSlice.reducer;
