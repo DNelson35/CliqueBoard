@@ -34,7 +34,14 @@ export const groupApi = createApi({
         body: group_id,
       })
     }),
+    createEvent: builder.mutation({
+      query: (eventInfo) => ({
+        url: 'widget_data',
+        method: 'POST',
+        body: eventInfo,
+      }),
+    }),
   }),
 })
 
-export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation, useDeleteInvitationMutation, useJoinGroupMutation } = groupApi
+export const {useGetGroupsQuery, useCreateGroupsMutation, useSendInvitationMutation, useDeleteInvitationMutation, useJoinGroupMutation, useCreateEventMutation  } = groupApi
