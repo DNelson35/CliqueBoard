@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+// import { useSelector } from 'react-redux';
+import EventReciver from './EventReciver';
+function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
 
-function Calendar() {
   const handleDateClick = (arg) => {
-    alert(arg.dateStr);
+    setEventArg(arg)
+    setIsOpen(!isOpen)
   };
 
   const renderEventContent = (eventInfo) => {
@@ -17,22 +20,28 @@ function Calendar() {
     );
   };
 
+  const events = group.widgets.Calendar?.map(event => (
+    {
+      start: `${event.start_date}`,
+      end: `${event.end_date}`,
+      title: `${event.title}`
+    }
+  ))
+
   return (
     <div className='w-[85%] ml-20'>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         weekends={true}
-        dateClick={handleDateClick}
-        events={[
-          { title: 'event 1', date: '2023-09-07' },
-          { title: 'event 3', date: '2023-09-07' },
-          { title: 'event 2', date: '2023-09-17' },
-          { title: 'event 4', date: '2023-09-17' },
-        ]}
+        // dateClick={handleDateClick}
+        selectable={true}
+        select={handleDateClick}
+        events={events}
         eventContent={renderEventContent}
         height={'auto'}
       />
+      <EventReciver group={group}/>
     </div>
   );
 }
