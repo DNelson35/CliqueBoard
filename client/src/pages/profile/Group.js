@@ -3,23 +3,25 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
 import Calendar from '../../components/Calendar'
+import EventDateForm from '../../components/EventDateForm'
 
 
 function Group({ allUsers }) {
   const [filteredUsers, setFilteredUsers] = useState(allUsers)
   const [search, setSearch] = useState('')
   const [displayed, setDisplayed] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [eventArg, setEventArg] = useState(null)
+  
   const {groupId} = useParams()
   const user = useSelector(state => state.user.user)
   const userGroups = useSelector(state => state.groups.groups)
   
 
   const group = userGroups?.find(group => group.id === parseInt(groupId))
-  console.log(userGroups)
   const [sendInvite] = useSendInvitationMutation()
   const userList = (group.users.length > 0)? group.users.map(user => <li key={user.id}>{user.username}</li>) : null
   
-
   const filteredUsersList = filteredUsers?.map(user =>
     <div key={user.id} className='flex justify-between'>
       <li className='text-white pl-2'>{user.name}</li>
@@ -60,7 +62,7 @@ function Group({ allUsers }) {
           : null}
         <div className='flex justify-end h-auto'>
           <div className='flex justify-center w-screen'>
-            <Calendar/>
+            <Calendar group={group} setIsOpen={setIsOpen} isOpen={isOpen} setEventArg={setEventArg} />
           </div>
           <div className='flex-col border border-black w-[10%] h-52 mr-5 mt-5 justify-center'>
             <h1 className=' text-lg font-bold text-center'>Users</h1>
@@ -69,7 +71,7 @@ function Group({ allUsers }) {
             </ul>
           </div>
         </div>
-        
+        {isOpen? <EventDateForm eventArg={eventArg} group={group}/> : null}
     </div>
   )
 }
