@@ -77,6 +77,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_170224) do
     t.bigint "widget_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "description"
+    t.string "start_date"
+    t.string "end_date"
     t.string "data_key"
     t.string "data_value"
     t.index ["group_id"], name: "index_widget_data_on_group_id"
