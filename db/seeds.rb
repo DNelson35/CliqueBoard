@@ -21,6 +21,8 @@ jenkins.group_members.create!(user_id: felesia.id, group_id: jenkins.id)
 
 calendar = Widget.create!(name: 'Calendar')
 
+i=0
 groups.each do |group|
-    group.widget_data.create!(widget_id: calendar.id, data_key: "date", data_value: '09/22/2023')
+    i += 1
+    group.widget_data.create!(widget_id: calendar.id, start_date: '2023-09-22', title: "event#{i}" )
 end
