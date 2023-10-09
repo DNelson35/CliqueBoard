@@ -10,11 +10,12 @@ import {Routes, Route, useLocation} from 'react-router-dom'
 import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi';
 import { useSelector } from 'react-redux';
 import { useGetGroupsQuery } from "../api/groupApi";
+import Messenger from "./profile/Messenger";
 
 function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
-  const groups = useSelector(state => state.groups.groups)
+  // const groups = useSelector(state => state.groups.groups)
 
   const {isLoading: groupsLoading} = useGetGroupsQuery()
   const {data: allUsers} = useAllUsersQuery()
@@ -31,6 +32,7 @@ function App() {
           <Route path={'/dashboard'} element={<DashBoard/>} />
           <Route path={'/group/:groupId'} element={<Group allUsers={allUsers}/>} />
           <Route path={'/profile'} element={<Profile/>} />
+          <Route path={'/messenger'} element={<Messenger/>} />
         </Route>
       </Routes>
     </div>

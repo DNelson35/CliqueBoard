@@ -44,7 +44,7 @@ function Nav() {
                             <InvitationReceiver user={user} open={notifcationOpen} setOpen={setNotificationOpen}/>
                             <RxDashboard title='dashboard' onClick={() => navigate('/dashboard')} className='text-white text-3xl' />
                             <TbUserCircle title='profile' onClick={() => navigate('/profile')} className='text-white text-3xl'/>
-                            <TbMessageCircle2 className='text-white text-3xl'/>
+                            <TbMessageCircle2 className='text-white text-3xl' onClick={() => navigate('/messenger')}/>
                         </div>
                         <div className="mt-auto">
                             <CgLogOut title='logout' onClick={() => logOut()} className='text-white text-3xl'/>
