@@ -5,10 +5,14 @@ class OnlineUsersChannel < ApplicationCable::Channel
     end
 
     def unsubscribed; end
-  
+
     def update_user_list 
-        logged_in_users = User.joins(:joined_groups).where(groups: { id: current_user.groups }).where(status: 'Online').distinct
-        OnlineUsersChannel.broadcast_to(current_user, users: logged_in_users)
+      logged_in_users = User.joins(:joined_groups).where(status: 'Online').distinct
+
+      logged_in_users.each do |user|
+        OnlineUsersChannel.broadcast_to(user, users: logged_in_users)
+      end
     end
+
   end
   
