@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-        render json: users, status: :ok
+        render json: users, include_conversations: false, status: :ok
     end
     
     def create 
@@ -13,7 +13,15 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user
+        render json: @current_user, include_conversations: true
+    end
+
+    def searchable_users
+        groups = @current_user.joined_groups
+        users = groups.flat_map { |group| group.users}
+        unique_users = users.uniq
+
+        render json: unique_users, status: :ok
     end
 
     private
