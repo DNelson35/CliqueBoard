@@ -15,6 +15,11 @@ class GroupsController < ApplicationController
         render json: group, status: :ok
     end
 
+    def show
+        group = @current_user.joined_groups.find(params[:id])
+        render json: group, status: :ok
+    end
+
     def destroy
         group = @current_user.groups.find(params[:id])
         group.destroy
