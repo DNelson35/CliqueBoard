@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 function DashBoard() {
   const groups = useSelector(state => state.groups.groups)
+  const onlineUsers = useSelector(state => state.user.onlineUsers)
 
   const allEvents = groups?.map(group => group.widgets.Calendar)
 
@@ -13,13 +14,15 @@ function DashBoard() {
       <p>{event.title}</p>
     </li>
   ))
+
+  const onlineUsersList = onlineUsers?.map(user => <p key={user.id}>{user.name}</p>)
   
   return (
     <div className='h-screen'>
         <div className='flex justify-evenly'>
             <div className='border border-red-500 w-1/4 h-40'>
               <h1>Online Users</h1>
-              <OnlineUsersReceiver /> 
+              {onlineUsersList} 
             </div>
             <div className='border border-red-500 w-1/4 h-40'> notifications</div>
         </div>
@@ -35,8 +38,8 @@ function DashBoard() {
                   task
               </div>
             </div>
-           
         </div>
+        <OnlineUsersReceiver/>
     </div>
   )
 }
