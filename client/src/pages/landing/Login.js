@@ -15,7 +15,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     await login(formData)
-    navigate('/profile')
+    navigate('/')
   }
 
   const handleChange = (e) => {

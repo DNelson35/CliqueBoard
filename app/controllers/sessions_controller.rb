@@ -18,6 +18,4 @@ class SessionsController < ApplicationController
         head :no_content
     end
 
-    private
-
 end

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import image from '../../assets/planning.png'
+import OnlineUsersReceiver from '../../components/OnlineUsersReceiver'
 
 function Welcome() {
 
@@ -24,6 +25,7 @@ function Welcome() {
       <div className="flex flex-col items-center justify-center h-screen bg-red-200">
         <h2 className="mb-5 text-4xl">Hello</h2>
       </div>
+      <OnlineUsersReceiver/>
    </div>
   )
 }

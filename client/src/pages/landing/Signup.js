@@ -18,7 +18,7 @@ function Signup() {
     const onSubmit = async (e) => {
         e.preventDefault()
         await signUp(formData)
-        navigate('/profile')
+        navigate('/')
     }
 
     const handleChange = (e) => {
