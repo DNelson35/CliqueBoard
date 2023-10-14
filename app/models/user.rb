@@ -8,4 +8,5 @@ class User < ApplicationRecord
     has_many :messages
     has_many :conversations
     #  the joined_groups can be changed to a regular has many through this is speciffcly for naming the association to joined_groups instead
+
 end
