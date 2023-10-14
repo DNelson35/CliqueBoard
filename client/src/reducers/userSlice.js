@@ -3,6 +3,7 @@ import { userApi } from '../api/authApi';
 
 const initialState = {
   user: null,
+  onlineUsers: null,
 }
 
 const userSlice = createSlice({
@@ -10,7 +11,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      return action.payload
+      state.user = action.payload
     },
     addGroupToUser: (state, action) => {
       state.user.joined_groups.push(action.payload)
@@ -20,6 +21,9 @@ const userSlice = createSlice({
     },
     deleteInvite: (state, action) => {
       state.user.received_invitations =  state.user.received_invitations.filter(invite => parseInt(invite.id) !== action.payload)
+    },
+    setOnlineUsers: (state, action) => {
+      state.onlineUsers = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -50,5 +54,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser, addGroupToUser, addInvite, deleteInvite } = userSlice.actions;
+export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers } = userSlice.actions;
 export default userSlice.reducer;
