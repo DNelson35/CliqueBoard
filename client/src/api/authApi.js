@@ -10,6 +10,9 @@ export const userApi = createApi({
     allUsers: builder.query({
       query: () => 'users'
     }),
+    members: builder.query({
+      query: () => 'members'
+    }),
     loginUser: builder.mutation({
         query: (credentials) => ({
             url: 'login',
@@ -30,7 +33,14 @@ export const userApi = createApi({
             method: 'DELETE',
         }),
     }),
+    createMessage: builder.mutation({
+      query: (message) => ({
+        url: 'messages',
+        method: 'POST',
+        body: message
+      })
+    }),
   }),
 })
 
-export const { useCheckUserQuery, useAllUsersQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation} = userApi
+export const { useCheckUserQuery, useMembersQuery, useAllUsersQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation, useCreateMessageMutation} = userApi
