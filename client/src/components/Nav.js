@@ -11,6 +11,7 @@ import Logo from './Logo'
 import GroupToggle from './GroupToggle.js'
 import InvitationReceiver from './InvitationReciver.js'
 import NotificationDisplay from './NotificationDisplay.js'
+import ConversationReciver from './ConversationReciver.js'
 
 
 function Nav() {
@@ -53,6 +54,7 @@ function Nav() {
                     </nav>
                     <GroupToggle isOpen={isOpen}/>
                     <NotificationDisplay notifcationOpen={notifcationOpen} user={user}/>
+                    <ConversationReciver/>
                 </div>
             ) : (
                 
