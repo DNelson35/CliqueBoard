@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_08_200228) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_16_172727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_200228) do
     t.bigint "user2_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "chat_type"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_conversations_on_group_id"
     t.index ["user1_id"], name: "index_conversations_on_user1_id"
     t.index ["user2_id"], name: "index_conversations_on_user2_id"
   end
@@ -35,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_200228) do
 
   create_table "groups", force: :cascade do |t|
     t.bigint "admin_id"
-    t.string "name"
+    t.string "group_name"
     t.string "description"
     t.string "access_code"
     t.datetime "created_at", null: false
@@ -112,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_200228) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "conversations", "groups"
   add_foreign_key "conversations", "users", column: "user1_id"
   add_foreign_key "conversations", "users", column: "user2_id"
   add_foreign_key "group_members", "groups"
