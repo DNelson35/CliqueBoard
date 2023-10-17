@@ -4,6 +4,7 @@ import { userApi } from '../api/authApi';
 const initialState = {
   user: null,
   onlineUsers: null,
+  conversation: null,
 }
 
 const userSlice = createSlice({
@@ -24,6 +25,12 @@ const userSlice = createSlice({
     },
     setOnlineUsers: (state, action) => {
       state.onlineUsers = action.payload
+    },
+    setConversation: (state, action) => {
+      state.conversation = action.payload
+    },
+    addMessage: (state, action) => {
+      state.conversation.messages.push(action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -54,5 +61,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers } = userSlice.actions;
+export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers, setConversation, addMessage } = userSlice.actions;
 export default userSlice.reducer;
