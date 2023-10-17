@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :users, :widgets
+  attributes :id, :group_name, :description, :users, :widgets
 
   def widgets
     object.widgets.each_with_object({}) do |widget, hash|
