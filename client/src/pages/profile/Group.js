@@ -27,7 +27,7 @@ function Group({ allUsers }) {
       <li className='text-white pl-2'>{user.name}</li>
       <button className='text-white pr-3' onClick={() => sendInvite({
         recipient_id: user.id,
-        group_name: group.name,
+        group_name: group.group_name,
         group_id: group.id
       })}>Invite</button>
     </div> )
@@ -44,7 +44,7 @@ function Group({ allUsers }) {
     <div className='h-screen w-screen'>
       <div className="flex items-start">
         <div className="flex-grow flex justify-end items-start w-1/2 ml-20">
-          <p className='text-3xl font-bold'>{group.name}</p>
+          <p className='text-3xl font-bold'>{group.group_name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
           <button onClick={() => setDisplayed(!displayed)}>Invite 🔍</button>
