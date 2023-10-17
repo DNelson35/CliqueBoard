@@ -40,7 +40,14 @@ export const userApi = createApi({
         body: message
       })
     }),
+    createConversation: builder.mutation({
+      query: (message) => ({
+        url: 'conversations',
+        method: 'POST',
+        body: message
+      })
+    }),
   }),
 })
 
-export const { useCheckUserQuery, useMembersQuery, useAllUsersQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation, useCreateMessageMutation} = userApi
+export const { useCheckUserQuery, useMembersQuery, useAllUsersQuery, useLoginUserMutation, useSignOutUserMutation, useSignUpUserMutation, useCreateMessageMutation, useCreateConversationMutation} = userApi
