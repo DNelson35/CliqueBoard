@@ -18,7 +18,7 @@ function GroupToggle({isOpen}) {
     const groups = user.joined_groups?.map(group => (
         <div key={group.id} className='flex justify-center my-2'>
             <div className='bg-slate-700 w-1/2 h-10'>
-                <h1 className='text-white font-bold' onClick={() => navigate(`/group/${group.id}`)}>{group.name}</h1>
+                <h1 className='text-white font-bold' onClick={() => navigate(`/group/${group.id}`)}>{group.group_name}</h1>
             </div>
         </div>
     ))
@@ -55,7 +55,7 @@ function GroupToggle({isOpen}) {
                 <h1 className='ml-10'>Groups</h1>
             </div>
             {groups}
-        </div> 
+        </div>
     </div>
   )
 }
