@@ -8,7 +8,7 @@ function DashBoard() {
 
   const allEvents = groups?.map(group => group.widgets.Calendar)
 
-  const eventList = allEvents.flat().map(event => (
+  const eventList = allEvents?.flat().map(event => (
     <li key={event.created_at}>
       <p>{event.start_date}</p>
       <p>{event.title}</p>
