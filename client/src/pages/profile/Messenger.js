@@ -38,7 +38,7 @@ function Messenger() {
       chat_type: chatType,
     })
 
-    setConversation(null)
+    dispatch(setConversation(null))
   }
 
   const handleConversationSelect = (data) => {
@@ -64,13 +64,13 @@ function Messenger() {
       {conversation.title1 === user.username ? conversation.title2 : conversation.title1}
     </li>
   ))
-
+    console.log(searchInput)
   return (
     <div className='flex h-screen w-screen'>
-      <div className='flex flex-col w-1/4 h-screen border border-red-500'>
-        <div className='flex flex-col items-center'>
+      <div className='fixed flex flex-col w-1/4 h-screen bg-slate-600'>
+        <div className='flex flex-col items-center text-white'>
           <h1>Messenger</h1>
-          <input className='w-3/5 ml-6 pl-3' value={searchInput} placeholder='search for people and groups...' onChange={handleChange}/>
+          <input className='w-3/5 ml-6 pl-3 text-black' value={searchInput} placeholder='search for people and groups...' onChange={handleChange}/>
           <ul>
             {groupsFilter}
             {userFilter}
@@ -81,7 +81,7 @@ function Messenger() {
           </ul>
         </div>
       </div>
-      <div className='flex flex-col w-3/4 h-screen border border-red-500'>
+      <div className='flex flex-col w-3/4 h-screen ml-[25%]'>
         {recipient?.data || conversation ? 
         <>
           <Chat recipient={recipient?.data} chatType={recipient?.chat_type} conversation={conversation} user={user}/>
