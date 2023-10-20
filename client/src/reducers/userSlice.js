@@ -27,9 +27,17 @@ const userSlice = createSlice({
       state.onlineUsers = action.payload
     },
     setConversation: (state, action) => {
-      state.conversation = action.payload
+      if(action.payload !== null){
+        const chat = state.user.conversations.find(chat => chat.id === action.payload.id)
+        state.conversation = chat
+      }else {
+        state.conversation = null
+      }
+      
     },
     addMessage: (state, action) => {
+      const chat = state.user.conversations.find(chat => chat.id === state.conversation.id)
+      chat.messages.push(action.payload)
       state.conversation.messages.push(action.payload)
     },
   },
