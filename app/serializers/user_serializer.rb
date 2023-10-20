@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :name, :email_address, :age, :password_digest, :received_invitations, :conversations, :joined_groups
+  attributes :id, :username, :name, :email_address, :age, :password_digest, :status, :received_invitations, :conversations, :joined_groups
 
   # has_many :joined_groups
 
