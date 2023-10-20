@@ -13,7 +13,9 @@ function ConversationReciver() {
     useEffect(() => {
     const subscription = cable.subscriptions.create({ channel: 'ConversationChannel', id: conversation?.id}, {
             received: (data) => {
-                dispatch(addMessage(data))
+
+              dispatch(addMessage(data))
+              
             },
         });
 
