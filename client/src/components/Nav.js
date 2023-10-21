@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSignOutUserMutation } from '../api/authApi.js'
@@ -19,18 +19,33 @@ function Nav() {
     const user = useSelector(state => state.user.user)
     const navigate = useNavigate()
     const [signOut] = useSignOutUserMutation()
+    const ref = useRef()
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
     const [notifcationOpen, setNotificationOpen] = useState(false)
 
     const toggleVerticalBar = () => {
-        setIsOpen(!isOpen);
-    };
+        setIsOpen(!isOpen)
+    }
 
     const logOut = async () => {
         await signOut()
         navigate('/')
     }
+
+    useEffect(() => {
+        const closeNotifications = (e) => {
+            if (!ref.current.contains(e.target) && !e.target.closest('.notification-icon')) {
+              setNotificationOpen(false)
+            }
+          }
+      
+        document.addEventListener('mousedown', closeNotifications)
+      
+        return () => {
+          document.removeEventListener('mousedown', closeNotifications)
+        }
+      }, [])
 
     return (
         <>
@@ -53,7 +68,7 @@ function Nav() {
                         <FaGripLinesVertical onClick={toggleVerticalBar} className='absolute top-1/2 right-0 text-white text-2xl'/>
                     </nav>
                     <GroupToggle isOpen={isOpen}/>
-                    <NotificationDisplay notifcationOpen={notifcationOpen} user={user}/>
+                    <NotificationDisplay forwardRef={ref} notifcationOpen={notifcationOpen} user={user}/>
                     <ConversationReciver/>
                 </div>
             ) : (

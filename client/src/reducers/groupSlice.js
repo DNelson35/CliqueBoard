@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { groupApi } from '../api/groupApi';
+import { createSlice } from '@reduxjs/toolkit'
+import { groupApi } from '../api/groupApi'
 
 const initialState = {
   groups: null,
@@ -36,9 +36,9 @@ const groupSlice = createSlice({
       (state, { payload }) => {
         state.groups = state.groups.map(group => {
           if (group.id === payload.id) {
-            return payload;
+            return payload
           } else {
-            return group;
+            return group
           }
         })
       }
@@ -50,7 +50,7 @@ const groupSlice = createSlice({
     //   }
     // )    
   }
-});
+})
 
-export const { setGroups, addCalendarEvent } = groupSlice.actions;
-export default groupSlice.reducer;
+export const { setGroups, addCalendarEvent } = groupSlice.actions
+export default groupSlice.reducer

@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../reducers/userSlice';
-import groupReducer from '../reducers/groupSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import userReducer from '../reducers/userSlice'
+import groupReducer from '../reducers/groupSlice'
 import { userApi } from '../api/authApi'
-import { groupApi } from '../api/groupApi';
+import { groupApi } from '../api/groupApi'
 
 const store = configureStore({
   reducer: {
@@ -17,6 +17,6 @@ const store = configureStore({
       userApi.middleware,
       groupApi.middleware
     ),
-});
+})
 
-export default store;
+export default store

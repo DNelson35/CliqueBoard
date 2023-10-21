@@ -1,5 +1,5 @@
-import { createConsumer } from '@rails/actioncable';
+import { createConsumer } from '@rails/actioncable'
 
-const cable = createConsumer('ws://localhost:3000/cable');
+const cable = createConsumer('ws://localhost:3000/cable')
 
-export default cable;
+export default cable

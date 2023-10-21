@@ -1,8 +1,8 @@
 import React, { useEffect} from 'react'
-import { useDispatch } from 'react-redux';
-import cable from '../Cable';
-import { useSelector } from 'react-redux';
-import { addMessage } from '../reducers/userSlice';
+import { useDispatch } from 'react-redux'
+import cable from '../Cable'
+import { useSelector } from 'react-redux'
+import { addMessage } from '../reducers/userSlice'
 
 function ConversationReciver() {
 
@@ -17,12 +17,12 @@ function ConversationReciver() {
               dispatch(addMessage(data))
               
             },
-        });
+        })
 
         return () => {
-        cable.subscriptions.remove(subscription);
-        };
-    }, [conversation?.id, dispatch]);
+        cable.subscriptions.remove(subscription)
+        }
+    }, [conversation?.id, dispatch])
 
   return (
     <></>

@@ -1,16 +1,16 @@
-import Nav from "../components/Nav";
+import Nav from "../components/Nav"
 import Login from "./landing/Login"
-import Profile from './profile/Profile';
-import Welcome from './landing/Welcome';
-import Signup from './landing/Signup';
-import Group from "./profile/Group";
-import DashBoard from "./profile/DashBoard";
-import ProtectedRoutes from '../components/ProtectedRoutes';
+import Profile from './profile/Profile'
+import Welcome from './landing/Welcome'
+import Signup from './landing/Signup'
+import Group from "./profile/Group"
+import DashBoard from "./profile/DashBoard"
+import ProtectedRoutes from '../components/ProtectedRoutes'
 import {Routes, Route, useLocation} from 'react-router-dom'
-import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi';
-import { useSelector } from 'react-redux';
-import { useGetGroupsQuery } from "../api/groupApi";
-import Messenger from "./profile/Messenger";
+import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi'
+import { useSelector } from 'react-redux'
+import { useGetGroupsQuery } from "../api/groupApi"
+import Messenger from "./profile/Messenger"
 
 function App() {
   const location = useLocation()
@@ -36,7 +36,7 @@ function App() {
         </Route>
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

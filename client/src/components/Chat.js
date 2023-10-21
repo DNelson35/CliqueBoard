@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useCreateMessageMutation } from '../api/authApi'
 import { useCreateConversationMutation } from '../api/authApi'
 import useChatScroll from '../hooks/useChatScroll'
@@ -15,7 +15,6 @@ function Chat({ recipient, chatType, user, conversation }) {
   const [createMessage] = useCreateMessageMutation()
   const [createConversation] = useCreateConversationMutation()
   const ref = useChatScroll(conversation?.messages)
-  // const lastMessageRef = useRef(null)
 
   useEffect(() => {
     if (conversation){
@@ -50,7 +49,6 @@ function Chat({ recipient, chatType, user, conversation }) {
     e.preventDefault()
     const response = await createMessage(message)
     setMessage({...message, body: ''})
-    // lastMessageRef.current?.scrollIntoView({behavior: 'smooth'});
   }
 
   const handleChatInput = (e) => {
@@ -80,7 +78,7 @@ function Chat({ recipient, chatType, user, conversation }) {
       <ul ref={ref} className='flex flex-col w-full h-screen pb-20 overflow-auto scroll-smooth'>
         {chatMessages}
       </ul>
-      <div className='fixed bottom-0 w-full h-20 bg-slate-700 opacity-90'>
+      <div className='fixed bottom-0 w-full h-20 border-l-2 border-slate-600 bg-slate-700 opacity-90'>
         <form onSubmit={conversation? handleSubmitMessage : handleSubmitChat} className='flex justify-center mr-[25%] h-[70%]'>
           <input type='text' placeholder='Start typing...' value={message.body} onChange={handleChatInput} className='mt-3 w-3/4 text-xl'/>
           <button type='submit' className='flex justify-center h-10 w-auto bg-blue-400 text-white rounded-lg mt-3 p-3 ml-3 items-center'>Submit</button>

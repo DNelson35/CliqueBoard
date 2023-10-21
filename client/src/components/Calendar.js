@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-// import { useSelector } from 'react-redux';
-import EventReciver from './EventReciver';
+import React, { useState } from 'react'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
+// import { useSelector } from 'react-redux'
+import EventReciver from './EventReciver'
 function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
 
   const handleDateClick = (arg) => {
     setEventArg(arg)
     setIsOpen(!isOpen)
-  };
+  }
 
   const renderEventContent = (eventInfo) => {
     return (
@@ -17,8 +17,8 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
         <b>{eventInfo.timeText}</b>
         <i>{eventInfo.event.title}</i>
       </>
-    );
-  };
+    )
+  }
 
   const events = group.widgets.Calendar?.map(event => (
     {
@@ -43,7 +43,7 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
       />
       <EventReciver group={group}/>
     </div>
-  );
+  )
 }
 
-export default Calendar;
+export default Calendar

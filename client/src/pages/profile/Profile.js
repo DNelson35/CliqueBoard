@@ -1,28 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 function Profile() {
   const user = useSelector(state => state.user.user)
+  const [edit, setEdit] = useState(false)
 
   return (
-    <div className='flex ml-[15%] w-screen h-screen'>
-      <div className='flex justify-between w-1/2 h-1/2'>
-        <div className='flex justify-center items-center h-32 w-32 bg-pink-200 rounded-full' >
-          <p className='text-black text-6xl'>{user.name[0]}</p>
-        </div>
-        <div className=' flex justify-center border border-black w-1/2 mr-40'>
-          <form className='flex flex-col justify-center h-auto w-auto text-xl'>
-              <label>username</label>
-              <input type="text" />
-              <label>name</label>
-              <input type="text" />
-              <label>age</label>
-              <input type="text" />
-              <label>email address</label>
-              <input type="text" />
+   <div className='flex justify-center items-center w-screen h-screen bg-slate-500'>
+      <div className='flex justify-center items-center w-1/2 h-1/2'>
+        <div className='flex justify-center items-center bg-slate-700 w-1/2 h-full rounded-xl'>
+          <form className='flex flex-col w-3/4 text-xl text-white'>
+            <h1 className='text-2xl text-center font-bold'>Edit User</h1>
+            <label>Name</label>
+            <input className='text-black my-3' type='text' placeholder={user.name}></input>
+            <label>Username</label>
+            <input className='text-black my-3' type='text' placeholder={user.username}></input>
+            <label>Age</label>
+            <input className='text-black my-3' type='text' placeholder={user.age}></input>
+            <label>Email Address</label>
+            <input className='text-black my-3' type='text' placeholder={user.email_address}></input>
+            <button className='h-auto w-auto p-3 bg-blue-400 rounded-lg  mt-5'>Submit</button>
           </form>
         </div>
       </div>
-    </div>
+   </div>
   )
 }
 

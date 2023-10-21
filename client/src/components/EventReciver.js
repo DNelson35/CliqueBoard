@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
-import { useDispatch } from 'react-redux';
-import cable from '../Cable';
-import { addCalendarEvent } from '../reducers/groupSlice';
+import { useDispatch } from 'react-redux'
+import cable from '../Cable'
+import { addCalendarEvent } from '../reducers/groupSlice'
 
 function EventReciver({ group }) {
     const dispatch = useDispatch()
@@ -13,12 +13,12 @@ function EventReciver({ group }) {
             received: (data) => {
                 dispatch(addCalendarEvent(data))
             },
-        });
+        })
 
         return () => {
-        cable.subscriptions.remove(subscription);
-        };
-    }, [group.id, dispatch]);
+        cable.subscriptions.remove(subscription)
+        }
+    }, [group.id, dispatch])
 
     console.log(group)
 

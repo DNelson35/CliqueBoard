@@ -1,6 +1,6 @@
-import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLoginUserMutation} from "../../api/authApi";
+import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLoginUserMutation} from "../../api/authApi"
 
 
 const Login = () => {
@@ -56,6 +56,6 @@ const Login = () => {
     </div>
   </div>
   )
-};
+}
 
-export default Login;
+export default Login

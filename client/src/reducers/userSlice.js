@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { userApi } from '../api/authApi';
+import { createSlice } from '@reduxjs/toolkit'
+import { userApi } from '../api/authApi'
 
 const initialState = {
   user: null,
@@ -67,7 +67,7 @@ const userSlice = createSlice({
       }
     )
   }
-});
+})
 
-export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers, setConversation, addMessage } = userSlice.actions;
-export default userSlice.reducer;
+export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers, setConversation, addMessage } = userSlice.actions
+export default userSlice.reducer
