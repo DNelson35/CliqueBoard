@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import Notification from './Notification'
 
 function NotificationDisplay({notifcationOpen, user, forwardRef}) {

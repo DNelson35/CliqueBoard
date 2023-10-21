@@ -41,13 +41,13 @@ function Chat({ recipient, chatType, user, conversation }) {
 
   const handleSubmitChat = async (e) => {
     e.preventDefault()
-    const data = await createConversation(message)
+    await createConversation(message)
     setMessage({...message, body: ''})
   }
 
   const handleSubmitMessage = async (e) => {
     e.preventDefault()
-    const response = await createMessage(message)
+    await createMessage(message)
     setMessage({...message, body: ''})
   }
 

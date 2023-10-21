@@ -35,7 +35,7 @@ function Nav() {
 
     useEffect(() => {
         const closeNotifications = (e) => {
-            if (!ref.current.contains(e.target) && !e.target.closest('.notification-icon')) {
+            if (!ref.current?.contains(e.target) && !e.target.closest('.notification-icon')) {
               setNotificationOpen(false)
             }
           }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDeleteInvitationMutation, useJoinGroupMutation } from '../api/groupApi'
 import { useDispatch } from 'react-redux'
 import { addGroupToUser, deleteInvite } from '../reducers/userSlice'

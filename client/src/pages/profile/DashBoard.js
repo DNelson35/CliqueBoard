@@ -16,7 +16,7 @@ function DashBoard() {
 
     const allEvents = groups?.map(group => group.widgets.Calendar)
     
-    const eventArr = allEvents.flat().filter(event => {
+    const eventArr = allEvents?.flat().filter(event => {
       const currentEventDate = parseInt(event.start_date.split('-').join(''))
       switch(timeLine){
         case 'current':
