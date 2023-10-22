@@ -5,7 +5,6 @@ import { addGroupToUser, deleteInvite } from '../reducers/userSlice'
 
 function Notification({note}) {
     const [open, setOpen] = useState(false)
-    const [openInput, setOpenInput] = useState(false)
     const [code, setCode] = useState({
       access_code: ''
     })
@@ -37,21 +36,25 @@ function Notification({note}) {
     const handleJoin = async (e) => {
       e.preventDefault()
       const newGroup = await joinGroup(code)
-      console.log(newGroup.data)
-      dispatch(addGroupToUser(newGroup.data))
+      if (newGroup.data){
+        dispatch(addGroupToUser(newGroup.data))
+      }
     }
 
   return (
     <div className='flex text-justify ml-20 mb-2 notification'>
       <button className='flex text-white w-1/4 h-5 rounded-full bg-red-500 justify-center items-center pb-1 self-center' onClick={handleDelete}>x</button>
-      <div className=' text-justify ml-3 mb-1 pr-2 pl-2 border border-black rounded-lg bg-white' onClick={() => setOpen(!open)}>
-          <p className={` font-medium tracking-tighter ${open? '' : 'line-clamp-1'}`}>{ note.message }<button className='relative w-12 h-auto bg-purple-400 rounded-full' onClick={() => setOpenInput(!openInput)}>join</button></p>
-          {openInput? 
-          <form onSubmit={handleJoin}>
-            <input value={code.access_code} onChange={onChange} />
-            <button type='submit'/>
-          </form>
-          : null}
+      <div className=' text-justify ml-3 mb-1 p-2 border border-black rounded-lg bg-white'>
+          <p className={` font-medium tracking-tighter mb-2 ${open? '' : 'line-clamp-1'}`} onClick={() => setOpen(!open)}>{ note.message }</p>
+          {open?
+            <form onSubmit={handleJoin} className='flex space-x-3'>
+              <input value={code.access_code} onChange={onChange} className=' border border-purple-300 focus:outline-purple-400 ' placeholder='enter key' autoFocus />
+              <button type='submit' className='w-auto h-auto rounded-2xl bg-blue-400 py-1 px-3 text-white hover:bg-blue-500 active:bg-blue-600'>Join</button>
+            </form>
+           :
+            null
+          }
+          
       </div>
     </div>
   )
