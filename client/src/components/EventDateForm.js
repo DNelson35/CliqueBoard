@@ -11,7 +11,8 @@ function EventDateForm({ eventArg, group }) {
         group_id: group.id,
         name: "Calendar",
         data_key: 'none',
-        data_value: 'none'
+        data_value: 'none',
+        event_group: group.group_name
     })
 
     const [createEvent] = useCreateEventMutation()
