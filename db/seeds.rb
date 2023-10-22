@@ -24,7 +24,7 @@ calendar = Widget.create!(name: 'Calendar')
 i=0
 groups.each do |group|
     i += 1
-    group.widget_data.create!(widget_id: calendar.id, start_date: '2023-09-22', title: "event#{i}" )
+    group.widget_data.create!(widget_id: calendar.id, start_date: '2023-10-22', title: "event#{i}", event_group: group.group_name )
 end
 
 

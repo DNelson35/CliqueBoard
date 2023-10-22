@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_16_172727) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_014450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_172727) do
     t.string "end_date"
     t.string "data_key"
     t.string "data_value"
+    t.string "event_group"
     t.index ["group_id"], name: "index_widget_data_on_group_id"
     t.index ["widget_id"], name: "index_widget_data_on_widget_id"
   end
