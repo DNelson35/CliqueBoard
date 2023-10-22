@@ -20,7 +20,7 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
     )
   }
 
-  const events = group.widgets.Calendar?.map(event => (
+  const events = group?.widgets.Calendar?.map(event => (
     {
       start: `${event.start_date}`,
       end: `${event.end_date}`,

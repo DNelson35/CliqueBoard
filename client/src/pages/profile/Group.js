@@ -15,12 +15,14 @@ function Group({ allUsers }) {
   
   const {groupId} = useParams()
   const user = useSelector(state => state.user.user)
-  const userGroups = useSelector(state => state.groups.groups)
+  const groups = useSelector(state => state.groups.groups)
   
 
-  const group = userGroups?.find(group => group.id === parseInt(groupId))
+  const group = groups?.find(group => group.id === parseInt(groupId))
+
   const [sendInvite] = useSendInvitationMutation()
-  const userList = (group.users.length > 0)? group.users.map(user => <li key={user.id}>{user.username}</li>) : null
+
+  const userList = (group?.users.length > 0)? group.users.map(user => <li key={user.id}>{user.username}</li>) : null
   
   const filteredUsersList = filteredUsers?.map(user =>
     <div key={user.id} className='flex justify-between'>
@@ -44,7 +46,7 @@ function Group({ allUsers }) {
     <div className='h-screen w-screen'>
       <div className="flex items-start">
         <div className="flex-grow flex justify-end items-start w-1/2 ml-20">
-          <p className='text-3xl font-bold'>{group.group_name}</p>
+          <p className='text-3xl font-bold'>{group?.group_name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
           <button onClick={() => setDisplayed(!displayed)}>Invite 🔍</button>

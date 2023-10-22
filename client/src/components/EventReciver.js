@@ -7,7 +7,7 @@ function EventReciver({ group }) {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        const subscription = cable.subscriptions.create({ channel: 'EventChannel', group_id: group.id }, {
+        const subscription = cable.subscriptions.create({ channel: 'EventChannel', group_id: group?.id }, {
             received: (data) => {
                 dispatch(addCalendarEvent(data))
             },
@@ -16,7 +16,7 @@ function EventReciver({ group }) {
         return () => {
         cable.subscriptions.remove(subscription)
         }
-    }, [group.id, dispatch])
+    }, [group?.id, dispatch])
 
     console.log(group)
 
