@@ -9,7 +9,7 @@ function GroupToggle({isOpen}) {
     const [isOn, setIsOn] = useState(false)
     const [createGroup] = useCreateGroupsMutation()
     const [groupInfo, setGroupInfo] = useState({
-        name:'',
+        group_name:'',
         description: ''
     })
     const navigate = useNavigate()
@@ -34,7 +34,7 @@ function GroupToggle({isOpen}) {
         dispatch(addGroupToUser(newGroup.data))
     }
     
-
+    console.log(groupInfo)
   return (
     <div className={`fixed top-0 left-0 h-screen w-1/5 bg-gray-200 transition-all duration-300 z-10 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className='flex justify-end'>
@@ -44,7 +44,7 @@ function GroupToggle({isOpen}) {
             <form className='flex justify-center' onSubmit={handleGroupSubmit}>
                 <div className='flex flex-col w-1/2'>
                     <label>name</label>
-                    <input name='name' onChange={handleChange}/>
+                    <input name='group_name' onChange={handleChange}/>
                     <label>description</label>
                     <input name='description' onChange={handleChange} />
                     <button type='submit' className='w-1/2 h-1/2 bg-purple-400 rounded-full self-center my-3'>Submit</button>
