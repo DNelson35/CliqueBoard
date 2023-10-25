@@ -5,5 +5,5 @@ class Group < ApplicationRecord
     has_many :widget_data
     has_many :widgets, through: :widget_data
     has_many :tasks
-    has_many :conversations
+    has_one :conversation
 end
