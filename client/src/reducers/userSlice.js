@@ -40,6 +40,9 @@ const userSlice = createSlice({
       chat.messages.push(action.payload)
       state.conversation.messages.push(action.payload)
     },
+    addConversation: (state, action) => {
+      state.user.conversations.push(action.payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -69,5 +72,5 @@ const userSlice = createSlice({
   }
 })
 
-export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers, setConversation, addMessage } = userSlice.actions
+export const { setUser, addGroupToUser, addInvite, deleteInvite, setOnlineUsers, setConversation, addMessage, addConversation } = userSlice.actions
 export default userSlice.reducer

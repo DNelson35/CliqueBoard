@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate  } from 'react-router-dom'
 import { useSignOutUserMutation } from '../api/authApi.js'
 import { RxDashboard } from 'react-icons/rx'
 import { TbUserCircle, TbMessageCircle2 } from 'react-icons/tb'
@@ -15,7 +14,6 @@ import ConversationReciver from './ConversationReciver.js'
 
 
 function Nav() {
-    // clean up large sections of code into seprate components and clean up reuasble components
     const user = useSelector(state => state.user.user)
     const navigate = useNavigate()
     const [signOut] = useSignOutUserMutation()
@@ -79,12 +77,12 @@ function Nav() {
                         <h1 className="text-lg font-bold pl-5 pt-1.5">CliqueBoard</h1>
                     </div>
                     <div className="flex gap-4">
-                        <NavLink className="text-black">Welcome</NavLink>
-                        <NavLink className="text-black">About</NavLink>
-                        <NavLink className="text-black">Future</NavLink>
+                        <NavLink to='/' className="text-black">Welcome</NavLink>
+                        <NavLink to='/about' className="text-black">About</NavLink>
+                        <NavLink to='/future' className="text-black">Future</NavLink>
                     </div>
-                    <div>
-                        <NavLink to='/login' className="bg-blue-600 text-white px-4 py-2 mr-5 rounded">Login</NavLink>
+                    <div className='flex space-x-3'>
+                        <NavLink to='/login' className="bg-blue-600 text-white px-4 py-2 rounded">Login</NavLink>
                         <NavLink to='/signup' className="bg-blue-600 text-white px-4 py-2 rounded">Signup</NavLink>
                     </div>
                 </nav>

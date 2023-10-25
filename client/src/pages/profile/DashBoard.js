@@ -17,7 +17,7 @@ function DashBoard() {
     const allEvents = groups?.map(group => group.widgets.Calendar)
     
     const eventArr = allEvents?.flat().filter(event => {
-      const currentEventDate = parseInt(event.start_date.split('-').join(''))
+      const currentEventDate = parseInt(event?.start_date.split('-').join(''))
       switch(timeLine){
         case 'current':
           return parseInt(currentDate) === currentEventDate
@@ -66,7 +66,7 @@ function DashBoard() {
           </div>
           <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
             <h1 className='text-xl'>Upcoming Events</h1>
-            <p>{upcomingEvents?.length}</p>
+            <p>{upcomingEvents?.length || 0}</p>
           </div>
         </div>
         <div className='mt-5 h-auto pb-3 bg-slate-700 space-y-3 text-white rounded-lg shadow-slate-700 shadow-lg'>

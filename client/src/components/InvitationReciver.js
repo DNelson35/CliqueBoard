@@ -19,7 +19,6 @@ const InvitationReceiver = ({user, open, setOpen}) => {
     }
   }, [dispatch])
 
-  console.log(open)
 
   return(
     <div className='flex'>

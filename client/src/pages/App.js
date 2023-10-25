@@ -5,6 +5,8 @@ import Welcome from './landing/Welcome'
 import Signup from './landing/Signup'
 import Group from "./profile/Group"
 import DashBoard from "./profile/DashBoard"
+import About from "./landing/about"
+import Future from "./landing/future"
 import ProtectedRoutes from '../components/ProtectedRoutes'
 import {Routes, Route, useLocation} from 'react-router-dom'
 import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi'
@@ -28,6 +30,8 @@ function App() {
         <Route path={'/'} element={user? <DashBoard/> : <Welcome/>} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/signup'} element={<Signup/>} />
+        <Route path={'/about'} element={<About/>} />
+        <Route path={'/future'} element={<Future/>} />
         <Route element={<ProtectedRoutes/>} >
           <Route path={'/dashboard'} element={<DashBoard/>} />
           <Route path={'/group/:groupId'} element={<Group allUsers={allUsers}/>} />
