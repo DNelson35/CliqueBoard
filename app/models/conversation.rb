@@ -4,6 +4,7 @@ class Conversation < ApplicationRecord
     belongs_to :group, optional: true
     has_many :messages
 
+
     def title1
         user1.username || group.group_name
     end
@@ -15,4 +16,5 @@ class Conversation < ApplicationRecord
             user2.username
         end
     end
+
 end
