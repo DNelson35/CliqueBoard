@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { useCreateMessageMutation } from '../api/authApi'
-import { useCreateConversationMutation } from '../api/authApi'
+import { useDispatch } from 'react-redux'
+import { useCreateMessageMutation, useCreateConversationMutation } from '../api/authApi'
+import { addConversation, setConversation } from '../reducers/userSlice'
 import useChatScroll from '../hooks/useChatScroll'
 
 function Chat({ recipient, chatType, user, conversation }) {
@@ -15,6 +16,7 @@ function Chat({ recipient, chatType, user, conversation }) {
   const [createMessage] = useCreateMessageMutation()
   const [createConversation] = useCreateConversationMutation()
   const ref = useChatScroll(conversation?.messages)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (conversation){
@@ -41,7 +43,14 @@ function Chat({ recipient, chatType, user, conversation }) {
 
   const handleSubmitChat = async (e) => {
     e.preventDefault()
-    await createConversation(message)
+    const newConversation = await createConversation(message)
+    if(newConversation.error){
+      console.log(newConversation.error.data.chat)
+      dispatch(setConversation(newConversation.error.data.chat))
+    } else {
+      dispatch(addConversation(newConversation.data))
+      dispatch(setConversation(newConversation.data))
+    }
     setMessage({...message, body: ''})
   }
 
@@ -71,7 +80,6 @@ function Chat({ recipient, chatType, user, conversation }) {
     }
   })
 
-  // TODO: now that i have chat working now searching and clicking on a recipient user to create a new chat isnt working. when i click the chat dosnt change to the new user and the submit is still the current conversation. i may need to set conversation to null or somthing when i click a recipient.
   return (
     <div>
       <h1>{recipient?.username || recipient?.name}</h1>
