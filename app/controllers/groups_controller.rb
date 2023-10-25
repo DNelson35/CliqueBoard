@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
         code = generate_access_code
         group = @current_user.groups.create!(group_params.merge(access_code: code))
         group.group_members.create!(user_id: @current_user.id, group_id: group.id)
+        # group.conversation.create!(user1: @currrent_user.id, group_id: group.id, chat_type: 'Group')
         render json: group, status: :created
     end
 
