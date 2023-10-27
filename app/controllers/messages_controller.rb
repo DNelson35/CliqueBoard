@@ -23,21 +23,27 @@ class MessagesController < ApplicationController
     # the idea being i could then keep this at a higer level if it dosnt work where it is so that i can just set state for the chat and find the conversation by the chat then push the message to that conversation.
     def create
         chat = Conversation.find(params[:id])
-        # recipient_id
-        # group_id
 
-        # if (chat.chat_type == "User")
-        #     recipient_id = chat.user1_id == @current_user.id ? chat.user2_id : chat.user1_id
-        # else
-        #     group_id = chat.group_id
-        # end
+        if (chat.chat_type == "User")
+            recipient_id = chat.user1_id == @current_user.id ? chat.user2_id : chat.user1_id
 
-        # message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
+            recipient = User.find(recipient_id)
 
-        # if group_id
+            message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
 
-        # end
-        ActionCable.server.broadcast("ConversationChannel_#{chat.id}", message)
+            ConversationChannel.broadcast_to(recipient, message)
+            ConversationChannel.broadcast_to(@current_user, message)
+        else
+            group_id = chat.group_id
+            group = Group.find(group_id)
+
+            message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
+
+            group.users.each do |user|
+                ConversationChannel.broadcast_to(user, message)
+            end
+            
+        end
         
     end
     
