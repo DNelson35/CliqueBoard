@@ -67,7 +67,6 @@ function Nav() {
                     </nav>
                     <GroupToggle isOpen={isOpen}/>
                     <NotificationDisplay forwardRef={ref} notifcationOpen={notifcationOpen} user={user}/>
-                    <ConversationReciver/>
                 </div>
             ) : (
                 
