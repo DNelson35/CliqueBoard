@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :invitations, only: [:create, :destroy]
   resources :widget_data, only: [:create]
   resources :messages, only: [:create]
-  resources :conversations, only: [:create]
+  resources :conversations, only: [:create, :index]
 
   # patch 'users/:id/upload_image', to: 'users#upload_image'
   post '/join', to: 'groups#join'
