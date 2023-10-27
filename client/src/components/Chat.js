@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { useCreateMessageMutation, useCreateConversationMutation } from '../api/authApi'
-// import { addConversation } from '../reducers/conversationSlice'
-// import { addConversation, setConversation } from '../reducers/userSlice'
+import { addConversation } from '../reducers/conversationSlice'
 import useChatScroll from '../hooks/useChatScroll'
-import ConversationReciver from './ConversationReciver'
 
-function Chat({ recipient, chatType, user, chat, setChat, conversation }) {
+function Chat({ recipient, chatType, user, chat, setChat, conversations }) {
 
-
+  let conversation = conversations.find(conversation => conversation.id === chat?.id)
+  
   const [message, setMessage] = useState({
     id: '',
     body: '',
@@ -50,7 +49,7 @@ function Chat({ recipient, chatType, user, chat, setChat, conversation }) {
     if(newConversation.error){
       setChat(newConversation.error.data.chat)
     } else {
-      // dispatch(addConversation(newConversation.data))
+      dispatch(addConversation(newConversation.data))
       setChat(newConversation.data)
     }
     setMessage({...message, body: ''})
@@ -85,9 +84,9 @@ function Chat({ recipient, chatType, user, chat, setChat, conversation }) {
   const chatTitle = () => {
     if(conversation && conversation.chat_type === 'Group'){
       return conversation.title2
-    }else if(conversation && conversation.title1 === user.username){
+    }else if(conversation && conversation.title1.toLowerCase() === user.username.toLowerCase()){
       return conversation.title2
-    }else if(conversation && conversation.title1 !== user.username){
+    }else if(conversation && conversation.title1.toLowerCase() !== user.username.toLowerCase()){
       return conversation.title1
     }else if(recipient.username){
       return recipient.username
@@ -96,7 +95,7 @@ function Chat({ recipient, chatType, user, chat, setChat, conversation }) {
     }
   }
   
-  return chat?.id === conversation.id? (
+  return (
     <div>
       <h1 className='text-3xl text-slate-900 text-center'>{chatTitle()}</h1>
       <ul ref={ref} className='flex flex-col w-full h-screen pb-20 overflow-auto scroll-smooth'>
@@ -108,9 +107,8 @@ function Chat({ recipient, chatType, user, chat, setChat, conversation }) {
           <button type='submit' className='flex justify-center h-10 w-auto bg-blue-400 text-white rounded-lg mt-3 p-3 ml-3 items-center'>Submit</button>
         </form>
       </div>
-      <ConversationReciver chat={conversation}/>
     </div>
-  ): <ConversationReciver chat={conversation}/>
+  )
 }
 
 export default Chat
