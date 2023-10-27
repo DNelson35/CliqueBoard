@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
 import Calendar from '../../components/Calendar'
 import EventDateForm from '../../components/EventDateForm'
+import JoinedUserReciver from '../../components/JoinedUserReciver'
 
 
-function Group({ allUsers }) {
+function Group({ allUsers , refetch }) {
   const [filteredUsers, setFilteredUsers] = useState(allUsers)
   const [search, setSearch] = useState('')
   const [displayed, setDisplayed] = useState(false)
@@ -49,7 +50,7 @@ function Group({ allUsers }) {
           <p className='text-3xl font-bold'>{group?.group_name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
-          <button onClick={() => setDisplayed(!displayed)}>Invite 🔍</button>
+          <button onClick={() => setDisplayed(!displayed) & refetch()}>Invite 🔍</button>
         </div>
       </div>
       {displayed?
@@ -74,6 +75,7 @@ function Group({ allUsers }) {
           </div>
         </div>
         {isOpen? <EventDateForm eventArg={eventArg} group={group}/> : null}
+        <JoinedUserReciver group={group}/>
     </div>
   )
 }
