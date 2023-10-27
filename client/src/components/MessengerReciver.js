@@ -10,7 +10,7 @@ function MessengerReciver() {
   useEffect(() => {
     const subscription = cable.subscriptions.create('MessengerChannel', {
       received: (data) => {
-        // dispatch(addInvite(data.invitation))
+        console.log(data.chat)
         dispatch(addConversation(data.chat))
       },
     })
