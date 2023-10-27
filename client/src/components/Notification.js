@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDeleteInvitationMutation, useJoinGroupMutation } from '../api/groupApi'
 import { useDispatch } from 'react-redux'
 import { addGroupToUser, deleteInvite } from '../reducers/userSlice'
+import { joinedGroup } from '../reducers/groupSlice'
+import { addConversation } from '../reducers/conversationSlice'
 
 function Notification({note}) {
     const [open, setOpen] = useState(false)
@@ -38,6 +40,8 @@ function Notification({note}) {
       const newGroup = await joinGroup(code)
       if (newGroup.data){
         dispatch(addGroupToUser(newGroup.data))
+        dispatch(joinedGroup(newGroup.data))
+        dispatch(addConversation(newGroup.data.conversation))
       }
     }
 
