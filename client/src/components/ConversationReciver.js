@@ -2,16 +2,13 @@ import React, { useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import cable from '../Cable'
 import { useSelector } from 'react-redux'
-import { addMessage } from '../reducers/userSlice'
+import { addMessage } from '../reducers/conversationSlice'
 
-function ConversationReciver() {
-
-  const conversation = useSelector((state) => state.user.conversation)
+function ConversationReciver({chat}) {
 
     const dispatch = useDispatch()
-
     useEffect(() => {
-    const subscription = cable.subscriptions.create({ channel: 'ConversationChannel', id: conversation?.id}, {
+    const subscription = cable.subscriptions.create({ channel: 'ConversationChannel', id: chat?.id}, {
             received: (data) => {
 
               dispatch(addMessage(data))
@@ -22,7 +19,7 @@ function ConversationReciver() {
         return () => {
         cable.subscriptions.remove(subscription)
         }
-    }, [conversation?.id, dispatch])
+    }, [chat?.id, dispatch])
 
   return (
     <></>

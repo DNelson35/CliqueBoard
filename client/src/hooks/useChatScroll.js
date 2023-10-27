@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react'
 
-function useChatScroll(messages) {
+function useChatScroll(messages, chat) {
     const ref = useRef()
     useEffect(() => {
       if (ref.current) {
         ref.current.scrollTop = ref.current.scrollHeight
       }
-    }, [messages, ref])
+    }, [messages, ref, chat])
   return ref
 }
 
