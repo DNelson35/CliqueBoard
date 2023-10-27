@@ -12,16 +12,17 @@ import {Routes, Route, useLocation} from 'react-router-dom'
 import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi'
 import { useSelector } from 'react-redux'
 import { useGetGroupsQuery } from "../api/groupApi"
+import { useGetConversationsQuery } from "../api/messengerApi"
 import Messenger from "./profile/Messenger"
 
 function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
-  // const groups = useSelector(state => state.groups.groups)
-
+  
   const {isLoading: groupsLoading} = useGetGroupsQuery()
-  const {data: allUsers} = useAllUsersQuery()
+  const {data: allUsers, refetch} = useAllUsersQuery()
   const {isLoading } = useCheckUserQuery()
+  useGetConversationsQuery()
 
   return isLoading || groupsLoading? <div>loading...</div> : (
     <div >
@@ -34,9 +35,9 @@ function App() {
         <Route path={'/future'} element={<Future/>} />
         <Route element={<ProtectedRoutes/>} >
           <Route path={'/dashboard'} element={<DashBoard/>} />
-          <Route path={'/group/:groupId'} element={<Group allUsers={allUsers}/>} />
+          <Route path={'/group/:groupId'} element={<Group allUsers={allUsers} refetch={refetch}/>} />
           <Route path={'/profile'} element={<Profile/>} />
-          <Route path={'/messenger'} element={<Messenger/>} />
+          <Route path={'/messenger'} element={<Messenger allUsers={allUsers}/>} />
         </Route>
       </Routes>
     </div>
