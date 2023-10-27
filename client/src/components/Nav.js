@@ -11,6 +11,7 @@ import GroupToggle from './GroupToggle.js'
 import InvitationReceiver from './InvitationReciver.js'
 import NotificationDisplay from './NotificationDisplay.js'
 import ConversationReciver from './ConversationReciver.js'
+import MessengerReciver from './MessengerReciver.js'
 
 
 function Nav() {
@@ -67,6 +68,8 @@ function Nav() {
                     </nav>
                     <GroupToggle isOpen={isOpen}/>
                     <NotificationDisplay forwardRef={ref} notifcationOpen={notifcationOpen} user={user}/>
+                    <ConversationReciver />
+                    <MessengerReciver/>
                 </div>
             ) : (
                 
