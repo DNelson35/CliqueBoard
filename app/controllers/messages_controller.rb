@@ -18,10 +18,25 @@ class MessagesController < ApplicationController
     # #     render json: @message
     # # end
 
+    # i could try sending this like i send the whole conversation then i should be able to recieve the message without the need for the chat id and i should be able to receive the message from anywhere maybe
+
+    # the idea being i could then keep this at a higer level if it dosnt work where it is so that i can just set state for the chat and find the conversation by the chat then push the message to that conversation.
     def create
         chat = Conversation.find(params[:id])
+        # recipient_id
+        # group_id
 
-        message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
+        # if (chat.chat_type == "User")
+        #     recipient_id = chat.user1_id == @current_user.id ? chat.user2_id : chat.user1_id
+        # else
+        #     group_id = chat.group_id
+        # end
+
+        # message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
+
+        # if group_id
+
+        # end
         ActionCable.server.broadcast("ConversationChannel_#{chat.id}", message)
         
     end
