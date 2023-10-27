@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import ConversationReciver from '../../components/ConversationReciver'
-import MessengerReciver from '../../components/MessengerReciver'
 import Chat from '../../components/Chat'
-import { useMembersQuery } from '../../api/authApi'
-import { setConversation } from '../../reducers/userSlice'
-import { useDispatch } from 'react-redux'
 
 function Messenger({allUsers}) {
 
@@ -20,10 +15,7 @@ function Messenger({allUsers}) {
   })
   const [chat, setChat] = useState({})
   
-  const dispatch = useDispatch()
-  const groups = useSelector((state) => state.groups.groups)
   const currentUser = useSelector((state) => state.user.user)
-  // const {data: members} = useMembersQuery()
 
   const handleChange = (e) => setSearchInput(e.target.value)
  
@@ -37,7 +29,6 @@ function Messenger({allUsers}) {
     }
       
   }, [currentUser.id, allUsers, searchInput])
-
 
   const handleSelectedEntity = (data, chatType) => {
     setRecipient({
@@ -59,12 +50,11 @@ function Messenger({allUsers}) {
     </li>  
   ))
 
-
   const conversationList = conversations?.map((conversation) => {
         if (conversation.chat_type === 'User'){
           return (
             <li key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
-              {conversation.title1 === currentUser.username ? conversation.title2 : conversation.title1}
+              {conversation.title1.toLowerCase() === currentUser.username.toLowerCase() ? conversation.title2 : conversation.title1}
             </li>
           )
         } else {
@@ -77,10 +67,6 @@ function Messenger({allUsers}) {
     }
   )
 
-  const chats = conversations?.map((conversation) => (
-    <Chat key={conversation.id} recipient={recipient?.data} chatType={recipient?.chat_type} chat={chat} user={currentUser} setChat={setChat} conversation={conversation} />
-  ))
-  
   return (
     <div className='flex h-screen w-screen'>
       <div className='fixed flex flex-col w-1/4 h-screen bg-slate-600'>
@@ -99,12 +85,11 @@ function Messenger({allUsers}) {
       <div className='flex flex-col w-3/4 h-screen ml-[25%]'>
         {recipient?.data || chat.id ? 
         <>
-          {chats}
+          <Chat  recipient={recipient?.data} chatType={recipient?.chat_type} chat={chat} user={currentUser} setChat={setChat} conversations={conversations} />
         </>
         : 
         <h1 className='flex justify-center'>Start a conversation</h1>}
       </div>
-      <MessengerReciver/>
     </div>
   )
 }
