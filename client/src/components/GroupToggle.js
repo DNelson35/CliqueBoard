@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useCreateGroupsMutation } from '../api/groupApi'
 import { addGroupToUser } from '../reducers/userSlice'
+import { addConversation } from '../reducers/conversationSlice'
 
 function GroupToggle({isOpen}) {
     const user = useSelector(state => state.user.user)
+    const groups = useSelector(state => state.groups.groups)
     const [isOn, setIsOn] = useState(false)
     const [createGroup] = useCreateGroupsMutation()
     const [groupInfo, setGroupInfo] = useState({
@@ -15,7 +17,8 @@ function GroupToggle({isOpen}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const groups = user.joined_groups?.map(group => (
+    
+    const groupsList = groups?.map(group => (
         <div key={group.id} className='flex justify-center my-2'>
             <div className='flex justify-center  items-center bg-slate-700 hover:bg-slate-800 w-1/2 h-10 rounded-xl'>
                 <h1 className='text-white font-bold' onClick={() => navigate(`/group/${group.id}`)}>{group.group_name}</h1>
@@ -30,8 +33,8 @@ function GroupToggle({isOpen}) {
     const handleGroupSubmit = async (e) => {
         e.preventDefault()
         const newGroup = await createGroup(groupInfo)
-        console.log(newGroup.data)
         dispatch(addGroupToUser(newGroup.data))
+        dispatch(addConversation(newGroup.data.conversation))
     }
     
   return (
@@ -53,7 +56,7 @@ function GroupToggle({isOpen}) {
             <div className='flex justify-center'>
                 <h1 className='ml-10 mb-5 border-b-2 border-b-gray-400 text-white font-bold text-xl'>Groups</h1>
             </div>
-            {groups}
+            {groupsList}
         </div>
     </div>
   )
