@@ -6,14 +6,14 @@ class Conversation < ApplicationRecord
 
 
     def title1
-        user1.username || group.group_name
+        user1.username.upcase_first || group.group_name.upcase_first
     end
 
     def title2
         if user2.nil?
-            group.group_name
+            group.group_name.upcase_first
         else
-            user2.username
+            user2.username.upcase_first
         end
     end
 
