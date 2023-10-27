@@ -8,8 +8,9 @@ function ConversationReciver({chat}) {
 
     const dispatch = useDispatch()
     useEffect(() => {
-    const subscription = cable.subscriptions.create({ channel: 'ConversationChannel', id: chat?.id}, {
+    const subscription = cable.subscriptions.create('ConversationChannel', {
             received: (data) => {
+              console.log(data)
 
               dispatch(addMessage(data))
               
@@ -19,7 +20,7 @@ function ConversationReciver({chat}) {
         return () => {
         cable.subscriptions.remove(subscription)
         }
-    }, [chat?.id, dispatch])
+    }, [dispatch])
 
   return (
     <></>
