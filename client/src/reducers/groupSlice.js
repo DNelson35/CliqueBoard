@@ -17,6 +17,13 @@ const groupSlice = createSlice({
       const widget = group.widgets.Calendar
       widget.push(action.payload)
     },
+    addUserToGroup: (state, action) => {
+      const group = state.groups.find(group => action.payload.group.id === group.id)
+      group.users.push(action.payload.data)
+    },
+    joinedGroup: (state, action) => {
+      state.groups.push(action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -52,5 +59,5 @@ const groupSlice = createSlice({
   }
 })
 
-export const { setGroups, addCalendarEvent } = groupSlice.actions
+export const { setGroups, addCalendarEvent, addUserToGroup, joinedGroup } = groupSlice.actions
 export default groupSlice.reducer
