@@ -58,7 +58,7 @@ function DashBoard() {
         <div className='flex justify-between text-lg'>
           <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
             <h1 className='text-xl'>Groups</h1>
-            <p>{user?.joined_groups.length}</p>
+            <p>{groups?.length}</p>
           </div>
           <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
             <h1 className='text-xl'>Notifications</h1>
