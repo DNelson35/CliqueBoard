@@ -11,7 +11,8 @@ export const userApi = createApi({
       query: () => 'users'
     }),
     members: builder.query({
-      query: () => 'members'
+      query: () => 'members',
+      staleTime: 5000,
     }),
     loginUser: builder.mutation({
         query: (credentials) => ({
