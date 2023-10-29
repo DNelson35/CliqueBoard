@@ -12,6 +12,8 @@ import InvitationReceiver from './InvitationReciver.js'
 import NotificationDisplay from './NotificationDisplay.js'
 import ConversationReciver from './ConversationReciver.js'
 import MessengerReciver from './MessengerReciver.js'
+import EventReciver from './EventReciver.js'
+import JoinedUserReciver from './JoinedUserReciver.js'
 
 
 function Nav() {
@@ -70,6 +72,8 @@ function Nav() {
                     <NotificationDisplay forwardRef={ref} notifcationOpen={notifcationOpen} user={user}/>
                     <ConversationReciver />
                     <MessengerReciver/>
+                    <EventReciver/>
+                    <JoinedUserReciver/>
                 </div>
             ) : (
                 
