@@ -1,6 +1,6 @@
 class JoinedUserChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "JoinedUserChannel_#{params[:group_id]}"
+    stream_for current_user
   end
 
   def unsubscribed

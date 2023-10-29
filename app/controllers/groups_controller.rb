@@ -37,8 +37,15 @@ class GroupsController < ApplicationController
         group = Group.find_by(access_code: params[:access_code])
         if group
             member = group.group_members.create!(user_id: @current_user.id)
-            ActionCable.server.broadcast("JoinedUserChannel_#{group.id}", @current_user)
+            users = group.users
             render json: group, status: :created
+            data = {
+                group: group,
+                user: @current_user
+            }
+            users.each do |user|
+                JoinedUserChannel.broadcast_to(user, data) 
+            end  
         else
             render json: {error: "invalid access code"}, status: :unauthorized
         end
