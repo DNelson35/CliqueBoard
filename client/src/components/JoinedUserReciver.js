@@ -1,17 +1,18 @@
 import React, {useEffect} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addUserToGroup } from '../reducers/groupSlice'
 import cable from '../Cable'
 
 function JoinedUserReciver({ group }) {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.user.user)
 
   useEffect(() => {
-    const subscription = cable.subscriptions.create({channel: 'JoinedUserChannel', group_id: group?.id}, {
+    const subscription = cable.subscriptions.create('JoinedUserChannel', {
       received: (data) => {
-        console.log(data)
-        console.log(group)
-        dispatch(addUserToGroup({data: data, group: group}))
+        if (data.user.id !== user.id){
+          dispatch(addUserToGroup({data: data.user, group: data.group}))
+        } 
       },
     })
 
