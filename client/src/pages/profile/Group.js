@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
 import Calendar from '../../components/Calendar'
 import EventDateForm from '../../components/EventDateForm'
-import JoinedUserReciver from '../../components/JoinedUserReciver'
-
 
 function Group({ allUsers , refetch }) {
   const [filteredUsers, setFilteredUsers] = useState(allUsers)
@@ -75,7 +73,6 @@ function Group({ allUsers , refetch }) {
           </div>
         </div>
         {isOpen? <EventDateForm eventArg={eventArg} group={group}/> : null}
-        <JoinedUserReciver group={group}/>
     </div>
   )
 }
