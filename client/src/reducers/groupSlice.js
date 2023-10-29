@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { groupApi } from '../api/groupApi'
 
 const initialState = {
-  groups: null,
+  groups: [],
 }
 
 const groupSlice = createSlice({
