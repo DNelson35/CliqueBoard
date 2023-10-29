@@ -39,8 +39,8 @@ function Notification({note}) {
       e.preventDefault()
       const newGroup = await joinGroup(code)
       if (newGroup.data){
-        dispatch(addGroupToUser(newGroup.data))
         dispatch(joinedGroup(newGroup.data))
+        dispatch(addGroupToUser(newGroup.data))
         dispatch(addConversation(newGroup.data.conversation))
       }
     }
