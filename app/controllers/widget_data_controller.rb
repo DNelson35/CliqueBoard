@@ -9,7 +9,6 @@ class WidgetDataController < ApplicationController
         group.users.each do |user|
             EventChannel.broadcast_to(user, event)
         end
-        # ActionCable.server.broadcast("EventChannel_#{group.id}", event)
     end
    
     private

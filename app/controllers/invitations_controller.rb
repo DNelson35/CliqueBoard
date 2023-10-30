@@ -13,10 +13,4 @@ class InvitationsController < ApplicationController
         head :no_content
     end
 
-    private
-
-    # def encypt_code(group_id)
-    #     group = Group.find_by_id(group_id)
-    #     group.access_code.
-    # end
 end

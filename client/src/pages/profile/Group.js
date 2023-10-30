@@ -13,7 +13,6 @@ function Group({ allUsers , refetch }) {
   const [eventArg, setEventArg] = useState(null)
   
   const {groupId} = useParams()
-  const user = useSelector(state => state.user.user)
   const groups = useSelector(state => state.groups.groups)
   
 

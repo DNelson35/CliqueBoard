@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useCreateEventMutation } from '../api/groupApi'
 
 function EventDateForm({ eventArg, group }) {
-    // coding in some hard cases like calander need to figure out different way to handle this
     const [eventData, setEventData] = useState({
         title: '',
         description: '',

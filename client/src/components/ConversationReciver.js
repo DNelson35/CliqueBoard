@@ -1,10 +1,9 @@
 import React, { useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import cable from '../Cable'
-import { useSelector } from 'react-redux'
 import { addMessage } from '../reducers/conversationSlice'
 
-function ConversationReciver({chat}) {
+function ConversationReciver() {
 
     const dispatch = useDispatch()
     useEffect(() => {

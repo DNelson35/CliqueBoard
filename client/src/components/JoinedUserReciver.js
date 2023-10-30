@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addUserToGroup } from '../reducers/groupSlice'
 import cable from '../Cable'
 
-function JoinedUserReciver({ group }) {
+function JoinedUserReciver() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
 
@@ -19,7 +19,7 @@ function JoinedUserReciver({ group }) {
     return () => {
       cable.subscriptions.remove(subscription)
     }
-  }, [group?.id, dispatch, group])
+  }, [dispatch, user.id])
 
   return (
     <></>

@@ -1,8 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :name, :email_address, :age, :password_digest, :status, :received_invitations, :conversations, :joined_groups
 
-  # has_many :joined_groups
-
   def conversations
     if instance_options[:include_conversations] == false
       nil
@@ -13,9 +11,4 @@ class UserSerializer < ActiveModel::Serializer
     end
   end
 
-  # def joined_groups
-  #   object.joined_groups.includes(:users).map do |group|
-  #     group.as_json.merge(users: group.users)
-  #   end
-  # end
 end
