@@ -5,8 +5,7 @@ import Chat from '../../components/Chat'
 function Messenger({allUsers}) {
 
   const conversations = useSelector(state => state.conversations.conversations)
-
-  console.log(conversations)
+  
   const [searchInput, setSearchInput] = useState('')
   const [filterResults, setFilterResults] = useState([])
   const [recipient, setRecipient] = useState({
@@ -82,13 +81,13 @@ function Messenger({allUsers}) {
           </ul>
         </div>
       </div>
-      <div className='flex flex-col w-3/4 h-screen ml-[25%]'>
+      <div className='flex flex-col w-3/4 h-screen ml-[25%] bg-slate-900'>
         {recipient?.data || chat.id ? 
         <>
           <Chat  recipient={recipient?.data} chatType={recipient?.chat_type} chat={chat} user={currentUser} setChat={setChat} conversations={conversations} />
         </>
         : 
-        <h1 className='flex justify-center'>Start a conversation</h1>}
+        <h1 className='flex justify-center text-white font-semibold text-3xl'>Start a conversation</h1>}
       </div>
     </div>
   )

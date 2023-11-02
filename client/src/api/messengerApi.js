@@ -13,8 +13,15 @@ export const messengerApi = createApi({
                 url: `messages/${message.id}`,
                 method: 'DELETE'
             })
+        }),
+        updateMessage: builder.mutation({
+            query: (message) => ({
+                url: `/messages/${message.id}`,
+                method: 'PATCH',
+                body: message
+            })
         })
     }),
 })
 
-export const {useGetConversationsQuery, useDeleteMessageMutation} = messengerApi
+export const {useGetConversationsQuery, useDeleteMessageMutation, useUpdateMessageMutation} = messengerApi

@@ -24,13 +24,23 @@ class MessagesController < ApplicationController
         
     end
 
+    def update
+        chat = Conversation.find(params[:chat_id])
+        message = Message.find(params[:id])
+        recipient = get_recipient(chat)
+
+        message.update(body: params[:body])
+        ConversationChannel.broadcast_to(recipient, { message: message, chat_id: chat.id, action: 'Update' })
+        ConversationChannel.broadcast_to(@current_user, { message: message, chat_id: chat.id, action: 'Update'})
+    end
+
     def destroy
         message = Message.find(params[:id])
         chat = Conversation.find(message.conversation_id)
         recipient = get_recipient(chat)
         message.destroy
-        ConversationChannel.broadcast_to(recipient, { message_id: message.id, chat_id: chat.id, action: 'delete' })
-        ConversationChannel.broadcast_to(@current_user, { message_id: message.id, chat_id: chat.id, action: 'delete'})
+        ConversationChannel.broadcast_to(recipient, { message_id: message.id, chat_id: chat.id, action: 'Delete' })
+        ConversationChannel.broadcast_to(@current_user, { message_id: message.id, chat_id: chat.id, action: 'Delete'})
     end
     
     private
