@@ -7,8 +7,14 @@ export const messengerApi = createApi({
     endpoints: (builder) => ({
         getConversations: builder.query({
             query: () => 'conversations'
+        }),
+        deleteMessage: builder.mutation({
+            query: (message) => ({
+                url: `messages/${message.id}`,
+                method: 'DELETE'
+            })
         })
     }),
 })
 
-export const {useGetConversationsQuery} = messengerApi
+export const {useGetConversationsQuery, useDeleteMessageMutation} = messengerApi

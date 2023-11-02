@@ -19,12 +19,12 @@ function App() {
   const location = useLocation()
   const user = useSelector(state => state.user.user)
   
-  const {isLoading: groupsLoading} = useGetGroupsQuery()
-  const {data: allUsers, refetch} = useAllUsersQuery()
   const {isLoading } = useCheckUserQuery()
-  useGetConversationsQuery()
+  const { data: allUsers, refetch } = useAllUsersQuery(undefined, { skip: !user })
+  useGetGroupsQuery(undefined, { skip: !user })
+  useGetConversationsQuery(undefined, { skip: !user })
 
-  return isLoading || groupsLoading? <div>loading...</div> : (
+  return isLoading ? <div>loading...</div> : (
     <div >
       {!['/login', '/signup'].includes(location.pathname) && <Nav/>}
       <Routes>

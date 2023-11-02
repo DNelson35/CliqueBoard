@@ -9,13 +9,19 @@ const Login = () => {
     password: ''
   })
 
+  const [error, setError] = useState(null)
+
   const [login ] = useLoginUserMutation()
   const navigate = useNavigate()
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    await login(formData)
-    navigate('/')
+    const user = await login(formData)
+    if(user.error){
+      setError(user.error)
+    }else{
+      navigate('/')
+    }
   }
 
   const handleChange = (e) => {
@@ -43,9 +49,13 @@ const Login = () => {
               placeholder="Your Password"
               onChange={handleChange}
             />
-            <button type='submit' className=" bg-blue-400 py-2 px-4 text-sm text-white rounded hover:bg-blue-500 active:bg-blue-600 ">
-              Login
-            </button>
+            {error? <p className='text-red-500 mb-3'>{error.data.errors}</p> : null}
+            <div className='flex justify-center'>
+              <button type='submit' className=" bg-blue-400 py-2 px-4 text-sm text-white rounded hover:bg-blue-500 active:bg-blue-600 ">
+                Login
+              </button>
+            </div>
+            <p className=' text-center mt-3'>Don't have an account <span className='text-blue-500 cursor-pointer' onClick={() => navigate('/signup')}>Sign Up</span></p>
       </form>
     </div>
   </div>

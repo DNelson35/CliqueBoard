@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useCreateMessageMutation, useCreateConversationMutation } from '../api/authApi'
 import { addConversation } from '../reducers/conversationSlice'
 import useChatScroll from '../hooks/useChatScroll'
+import { useDeleteMessageMutation } from '../api/messengerApi'
 
 function Chat({ recipient, chatType, user, chat, setChat, conversations }) {
 
@@ -17,6 +18,7 @@ function Chat({ recipient, chatType, user, chat, setChat, conversations }) {
   })
   const [createMessage] = useCreateMessageMutation()
   const [createConversation] = useCreateConversationMutation()
+  const [deleteMessage] = useDeleteMessageMutation()
   const ref = useChatScroll(conversation?.messages, chat)
   const dispatch = useDispatch()
 
@@ -68,8 +70,13 @@ function Chat({ recipient, chatType, user, chat, setChat, conversations }) {
   const chatMessages = conversation?.messages?.map(message => {
     if (message.user_id === user.id){
       return ( 
-        <li className='flex justify-end h-auto m-1 mr-3' key={message.id}>
+        <li className='flex justify-end h-auto m-1 mr-3 group' key={message.id}>
           <p className='flex justify-center items-center w-auto h-auto bg-blue-400 rounded-lg p-3 text-xl max-w-[50%] text-white'>{message.body}</p>
+          <button className='hidden group-hover:block bg-red-400 rounded-full h-5 w-5 -translate-x-4 -translate-y-1'>
+            <div onClick={() => deleteMessage(message)} className='flex justify-center items-center h-full w-full'>
+              x
+            </div>
+          </button>
         </li>
       )
     } else {

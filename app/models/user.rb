@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+
     has_many :groups, foreign_key: 'admin_id', dependent: :destroy
     has_many :group_members
     has_many :joined_groups, through: :group_members, source: :group
@@ -9,6 +10,10 @@ class User < ApplicationRecord
     has_many :conversations
     has_many :started_conversations, class_name: 'Conversation', foreign_key: 'user1_id'
     has_many :joined_conversations, class_name: 'Conversation', foreign_key: 'user2_id'
+
+    validates_presence_of :username, :name, :email_address, :age
+
+    validates_uniqueness_of :username
    
     def all_conversations
         started_conversations.or(joined_conversations)

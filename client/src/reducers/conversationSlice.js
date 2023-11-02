@@ -17,6 +17,11 @@ const conversationSlice = createSlice({
             console.log(action.payload)
             const chat = state.conversations.find(conversation => conversation.id === action.payload.conversation_id)
             chat.messages.push(action.payload)
+        },
+        deleteMessage: (state, action) => {
+            const chat = state.conversations.find(chat => chat.id === action.payload.chat_id)
+            const messages = chat.messages.filter(message => message.id !== action.payload.message_id)
+            chat.messages = messages
         }
 
     },
@@ -30,5 +35,5 @@ const conversationSlice = createSlice({
     }
 })
 
-export const {addConversation, addMessage} = conversationSlice.actions
+export const {addConversation, addMessage, deleteMessage} = conversationSlice.actions
 export default conversationSlice.reducer
