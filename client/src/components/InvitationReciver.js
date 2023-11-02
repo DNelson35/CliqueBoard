@@ -10,7 +10,6 @@ const InvitationReceiver = ({user, open, setOpen}) => {
   useEffect(() => {
     const subscription = cable.subscriptions.create('InvitationChannel', {
       received: (data) => {
-        console.log(data)
         dispatch(addInvite(data.invitation))
       },
     })

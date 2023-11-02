@@ -1,6 +1,5 @@
 require 'securerandom'
 class GroupsController < ApplicationController
-# TODO: add functionality to remove members from the group
 
     def create 
         calendar = Widget.find_by(name: 'Calendar')

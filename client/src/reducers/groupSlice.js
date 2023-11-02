@@ -49,13 +49,7 @@ const groupSlice = createSlice({
           }
         })
       }
-    )
-    // builder.addMatcher(
-    //   groupApi.endpoints.createEvent.matchFulfilled,
-    //   (state, {payload}) => {
-    //     console.log(payload)
-    //   }
-    // )    
+    )  
   }
 })
 

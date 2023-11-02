@@ -18,8 +18,6 @@ function EventReciver({ group }) {
         }
     }, [group?.id, dispatch])
 
-    console.log(group)
-
     return (
         <></>
     )

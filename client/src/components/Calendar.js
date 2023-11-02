@@ -3,11 +3,18 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
-function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
+function Calendar({ group, setEventArg, setIsOpen, isOpen, eventOpen, setEventOpen }) {
 
   const handleDateClick = (arg) => {
     setEventArg(arg)
+    setEventOpen(false)
     setIsOpen(!isOpen)
+  }
+
+  const handleEventClick = (arg) => {
+    setEventArg(arg)
+    setIsOpen(false)
+    setEventOpen(!eventOpen)
   }
 
   const renderEventContent = (eventInfo) => {
@@ -23,7 +30,8 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
     {
       start: `${event.start_date}`,
       end: `${event.end_date}`,
-      title: `${event.title}`
+      title: `${event.title}`,
+      description: `${event.description}`
     }
   ))
 
@@ -37,6 +45,7 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen }) {
         selectable={true}
         select={handleDateClick}
         events={events}
+        eventClick={(arg) => handleEventClick(arg)}
         eventContent={renderEventContent}
         height={'auto'}
       />

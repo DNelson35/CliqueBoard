@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import cable from '../Cable'
-import { addMessage, deleteMessage } from '../reducers/conversationSlice'
+import { addMessage, deleteMessage, updateMessage } from '../reducers/conversationSlice'
 
 function ConversationReciver() {
 
@@ -9,10 +9,12 @@ function ConversationReciver() {
     useEffect(() => {
     const subscription = cable.subscriptions.create('ConversationChannel', {
             received: (data) => {
-              console.log(data)
-              if(data.action){
+              if(data.action === 'Delete'){
                 dispatch(deleteMessage(data))
-              } else {
+              } else if(data.action === 'Update'){
+                console.log(data)
+                dispatch(updateMessage(data))
+              }else {
                 dispatch(addMessage(data))
               }
             },

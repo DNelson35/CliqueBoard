@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fc-scrollgrid-sync-inner {
+    background-color: rgb(192, 132, 252);
+    color: white;
+}
+.fc-daygrid-day-frame {
+    background-color: rgb(51, 65, 85);
+    text-align: center;
+    overflow: hidden;
+}
+
+.fc-dayGridMonth-view {
+    border-color: white;
+}
+
+td.fc-day-today > div {
+    background-color: rgba(188,232,241,.3);
+}
+
+.fc-event-main {
+    background-color: rgb(192, 132, 252);
+    overflow: hidden;
+}
+

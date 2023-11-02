@@ -10,8 +10,13 @@ function Group({ allUsers , refetch }) {
   const [search, setSearch] = useState('')
   const [displayed, setDisplayed] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [eventOpen, setEventOpen]= useState(false)
   const [eventArg, setEventArg] = useState(null)
-  
+  // const [isOpen, setIsOpen] = useState({
+  //   dateOpen: false,
+  //   eventOpen: false,
+  //   dispalyInvite: false
+  // })
   const {groupId} = useParams()
   const groups = useSelector(state => state.groups.groups)
   
@@ -41,7 +46,7 @@ function Group({ allUsers , refetch }) {
   }
 
   return (
-    <div className='h-screen w-screen'>
+    <div className='h-screen w-screen overflow-hidden bg-slate-900 text-white'>
       <div className="flex items-start">
         <div className="flex-grow flex justify-end items-start w-1/2 ml-20">
           <p className='text-3xl font-bold'>{group?.group_name}</p>
@@ -62,7 +67,7 @@ function Group({ allUsers , refetch }) {
           : null}
         <div className='flex justify-end h-auto'>
           <div className='flex justify-center w-screen'>
-            <Calendar group={group} setIsOpen={setIsOpen} isOpen={isOpen} setEventArg={setEventArg} />
+            <Calendar group={group} setIsOpen={setIsOpen} isOpen={isOpen} setEventArg={setEventArg} eventOpen={eventOpen} setEventOpen={setEventOpen} />
           </div>
           <div className='flex-col border border-black w-[10%] h-52 mr-5 mt-5 justify-center'>
             <h1 className=' text-lg font-bold text-center'>Users</h1>
@@ -71,7 +76,14 @@ function Group({ allUsers , refetch }) {
             </ul>
           </div>
         </div>
-        {isOpen? <EventDateForm eventArg={eventArg} group={group}/> : null}
+        {isOpen? <EventDateForm eventArg={eventArg} group={group} setIsOpen={setIsOpen}/> : null}
+        {eventOpen? 
+          <div className='flex justify-center h-1/3 w-screen bg-slate-800 text-white'>
+            <h1>{eventArg.event.title}</h1>
+            <h2>{eventArg.event.extendedProps.description}</h2>
+          </div> 
+          : null
+        }
     </div>
   )
 }

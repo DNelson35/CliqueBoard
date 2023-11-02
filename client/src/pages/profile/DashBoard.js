@@ -50,26 +50,26 @@ function DashBoard() {
   ))
  
   return (
-    <div className='flex justify-center w-screen h-screen'>
+    <div className='flex justify-center w-screen h-screen bg-slate-900'>
       <div className='flex-col w-3/4 space-y-20 mt-5'>
         <div>
           <h1 className='text-5xl font-bold text-purple-400 '>{user.name}</h1>
         </div>
         <div className='flex justify-between text-lg'>
-          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
+          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-black shadow-lg'>
             <h1 className='text-xl'>Groups</h1>
             <p>{groups?.length}</p>
           </div>
-          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
+          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-black shadow-lg'>
             <h1 className='text-xl'>Notifications</h1>
             {user?.received_invitations.length}
           </div>
-          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-slate-700 shadow-lg'>
+          <div className='w-auto h-auto bg-slate-700 text-white p-3 px-6 rounded-lg text-center shadow-black shadow-lg'>
             <h1 className='text-xl'>Upcoming Events</h1>
             <p>{upcomingEvents?.length || 0}</p>
           </div>
         </div>
-        <div className='mt-5 h-auto pb-3 bg-slate-700 space-y-3 text-white rounded-lg shadow-slate-700 shadow-lg'>
+        <div className='mt-5 h-auto pb-3 bg-slate-700 space-y-3 text-white rounded-lg shadow-black shadow-lg'>
          <div className='flex-row space-x-3 p-3'>
             <button className='h-auto w-auto p-2 bg-purple-400 active:bg-purple-600 hover:bg-purple-500 rounded-full' onClick={() => setTimeLine('past')}>Past Events</button>
             <button className='h-auto w-auto p-2 bg-purple-400 active:bg-purple-600 hover:bg-purple-500 rounded-full' onClick={() => setTimeLine('current')}>Current Events</button>
@@ -91,7 +91,7 @@ function DashBoard() {
       </div>
       <div className='fixed right-0 w-30 mr-5 mt-5'>
         <div className='flex-col space-y-3'>
-          <div className='flex-col text-center h-auto bg-slate-700 text-white px-3 pt-3 pb-10 text-lg shadow-slate-700 shadow-lg rounded-lg'>
+          <div className='flex-col text-center h-auto bg-slate-700 text-white px-3 pt-3 pb-10 text-lg shadow-black shadow-lg rounded-lg'>
             <h1 className='text-xl'>Online Users</h1>
             {onlineUsersList} 
           </div>
