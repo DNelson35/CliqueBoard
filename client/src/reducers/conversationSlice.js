@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { messengerApi } from '../api/messengerApi'
+import { userApi } from '../api/authApi'
 
 const initialState = {
     conversations: []
@@ -40,6 +41,12 @@ const conversationSlice = createSlice({
            (state, {payload}) => {
             state.conversations = payload
            }
+        )
+        builder.addMatcher(
+            userApi.endpoints.signOutUser.matchFulfilled,
+            (state, {payload}) => {
+                return initialState
+            }
         )
     }
 })

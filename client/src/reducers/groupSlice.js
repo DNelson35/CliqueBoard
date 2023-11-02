@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { groupApi } from '../api/groupApi'
+import { userApi } from '../api/authApi'
 
 const initialState = {
   groups: [],
@@ -49,7 +50,13 @@ const groupSlice = createSlice({
           }
         })
       }
-    )  
+    ) 
+    builder.addMatcher(
+      userApi.endpoints.signOutUser.matchFulfilled,
+      (state, {payload}) => {
+        return initialState
+      }
+    )
   }
 })
 

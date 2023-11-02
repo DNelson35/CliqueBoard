@@ -60,7 +60,7 @@ const userSlice = createSlice({
     builder.addMatcher(
       userApi.endpoints.signOutUser.matchFulfilled,
       (state, {payload}) => {
-        state.user = null
+       return initialState
       }
     )
     builder.addMatcher(
