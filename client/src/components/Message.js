@@ -11,6 +11,7 @@ function Message({message, user, chat}) {
         chat_id: chat.id,
         body: message.body,
     })
+    console.log(message)
 
 
     const handleUpdate = (e) => setNewMessage({...newMessage, body: e.target.value})

@@ -16,7 +16,7 @@ export const messengerApi = createApi({
         }),
         updateMessage: builder.mutation({
             query: (message) => ({
-                url: `/messages/${message.id}`,
+                url: `messages/${message.id}`,
                 method: 'PATCH',
                 body: message
             })
