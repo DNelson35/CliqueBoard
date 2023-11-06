@@ -10,6 +10,7 @@ function Notification({note}) {
     const [code, setCode] = useState({
       access_code: ''
     })
+    const [error, setError] = useState(null)
     const dispatch = useDispatch()
     const [deleteInvitation] = useDeleteInvitationMutation()
     const [joinGroup] = useJoinGroupMutation()
@@ -38,7 +39,10 @@ function Notification({note}) {
     const handleJoin = async (e) => {
       e.preventDefault()
       const newGroup = await joinGroup(code)
-      if (newGroup.data){
+      if (newGroup.error){
+        setError(newGroup.error.data.error)
+      }else {
+        setError(false)
         dispatch(joinedGroup(newGroup.data))
         dispatch(addGroupToUser(newGroup.data))
         dispatch(addConversation(newGroup.data.conversation))
@@ -50,6 +54,7 @@ function Notification({note}) {
       <button className='flex text-white w-1/4 h-5 rounded-full bg-red-500 justify-center items-center pb-1 self-center' onClick={handleDelete}>x</button>
       <div className=' text-justify ml-3 mb-1 p-2 border border-black rounded-lg bg-white'>
           <p className={` font-medium tracking-tighter mb-2 ${open? '' : 'line-clamp-1'}`} onClick={() => setOpen(!open)}>{ note.message }</p>
+          {error? <p className='text-red-500 '>{error}</p> : null}
           {open?
             <form onSubmit={handleJoin} className='flex space-x-3'>
               <input value={code.access_code} onChange={onChange} className=' border border-purple-300 focus:outline-purple-400 ' placeholder='enter key' autoFocus />
