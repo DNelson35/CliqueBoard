@@ -12,11 +12,7 @@ function Group({ allUsers , refetch }) {
   const [isOpen, setIsOpen] = useState(false)
   const [eventOpen, setEventOpen]= useState(false)
   const [eventArg, setEventArg] = useState(null)
-  // const [isOpen, setIsOpen] = useState({
-  //   dateOpen: false,
-  //   eventOpen: false,
-  //   dispalyInvite: false
-  // })
+ 
   const {groupId} = useParams()
   const groups = useSelector(state => state.groups.groups)
   
