@@ -47,12 +47,12 @@ function Group({ allUsers , refetch }) {
 
   return (
     <div className='h-screen w-screen overflow-hidden bg-slate-900 text-white'>
-      <div className="flex items-start">
+      <div className="flex items-start mt-3 mb-10">
         <div className="flex-grow flex justify-end items-start w-1/2 ml-20">
-          <p className='text-3xl font-bold'>{group?.group_name}</p>
+          <p className='text-4xl font-bold'>{group?.group_name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
-          <button onClick={() => setDisplayed(!displayed) & refetch()}>Invite 🔍</button>
+          <button className=' w-auto h-auto bg-blue-400 rounded-lg px-2 py-1' onClick={() => setDisplayed(!displayed) & refetch()}>Invite 🔍</button>
         </div>
       </div>
       {displayed?
@@ -69,7 +69,7 @@ function Group({ allUsers , refetch }) {
           <div className='flex justify-center w-screen'>
             <Calendar group={group} setIsOpen={setIsOpen} isOpen={isOpen} setEventArg={setEventArg} eventOpen={eventOpen} setEventOpen={setEventOpen} />
           </div>
-          <div className='flex-col border border-black w-[10%] h-52 mr-5 mt-5 justify-center'>
+          <div className='flex-col  bg-slate-700 w-[10%] h-52 mr-5 mt-5 justify-center rounded-lg shadow-black shadow-xl'>
             <h1 className=' text-lg font-bold text-center'>Users</h1>
             <ul className='flex-col text-center'>
               {userList}
