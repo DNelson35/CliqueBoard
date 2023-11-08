@@ -52,13 +52,13 @@ function Messenger({allUsers}) {
   const conversationList = conversations?.map((conversation) => {
         if (conversation.chat_type === 'User'){
           return (
-            <li key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
+            <li className='bg-blue-400 p-1 rounded-full pl-5 ' key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
               {conversation.title1.toLowerCase() === currentUser.username.toLowerCase() ? conversation.title2 : conversation.title1}
             </li>
           )
         } else {
           return (
-            <li key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
+            <li className='bg-blue-400 p-1 rounded-full pl-5' key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
               {conversation.title2}
             </li>
           )
@@ -70,13 +70,13 @@ function Messenger({allUsers}) {
     <div className='flex h-screen w-screen'>
       <div className='fixed flex flex-col w-1/4 h-screen bg-slate-600'>
         <div className='flex flex-col items-center text-white'>
-          <h1>Messenger</h1>
+          <h1 className='mb-3 font-semibold uppercase text-lg'>Messenger</h1>
           <input className='w-3/5 ml-6 pl-3 text-black' value={searchInput} placeholder='search for people and groups...' onChange={handleChange}/>
-          <ul>
+          <ul className='mt-3'>
             {userFilter}
           </ul>
-          <h1>Conversations</h1>
-          <ul>
+          <h1 className=' mt-20 uppercase font-semibold text-lg'>Conversations</h1>
+          <ul className='mt-10 space-y-5 w-1/2'>
             {conversationList}
           </ul>
         </div>
