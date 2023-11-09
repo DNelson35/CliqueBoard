@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Chat from '../../components/Chat'
+import { useDeleteConversationMutation } from '../../api/messengerApi'
 
 function Messenger({allUsers}) {
 
   const conversations = useSelector(state => state.conversations.conversations)
-  
+  const [deleteConversation] = useDeleteConversationMutation()
   const [searchInput, setSearchInput] = useState('')
   const [filterResults, setFilterResults] = useState([])
   const [recipient, setRecipient] = useState({
@@ -51,10 +52,13 @@ function Messenger({allUsers}) {
 
   const conversationList = conversations?.map((conversation) => {
         if (conversation.chat_type === 'User'){
-          return (
-            <li className='bg-blue-400 p-1 rounded-full pl-5 ' key={conversation.id} onClick={() => handleConversationSelect(conversation)}>
-              {conversation.title1.toLowerCase() === currentUser.username.toLowerCase() ? conversation.title2 : conversation.title1}
-            </li>
+          return conversation.deleted_by === currentUser.id ? null : (
+           <Fragment key={conversation.id}>
+              <li className='bg-blue-400 p-1 rounded-full pl-5 ' onClick={() => handleConversationSelect(conversation)}>
+                {conversation.title1.toLowerCase() === currentUser.username.toLowerCase() ? conversation.title2 : conversation.title1}
+              </li>
+              <div onClick={() => deleteConversation(conversation)}>x</div> 
+           </Fragment>
           )
         } else {
           return (
