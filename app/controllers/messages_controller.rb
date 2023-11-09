@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
 
     def create
+        
         chat = Conversation.find(params[:id])
 
         if (chat.chat_type == "User")
-
             recipient = get_recipient(chat)
             message = @current_user.messages.create(body: params[:body], conversation_id: chat.id)
 
@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
         
     end
 
+    # bug if chat is deleted by a user then when a message is sent again the chat should show back up for the user. meaning i will have to update and somehow send this update to the recipient if the chat has a deleted user.
     def update
         chat = Conversation.find(params[:chat_id])
         message = Message.find(params[:id])
