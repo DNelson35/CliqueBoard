@@ -20,6 +20,20 @@ class ConversationsController < ApplicationController
         end
     end
 
+    def destroy
+        chat = @current_user.all_conversations.find(params[:id])
+        recipient = User.find_by(username: chat.title2.downcase)
+        
+        if chat.deleted_by != @current_user.id && chat.deleted_by != recipient.id
+            chat.update(deleted_by: @current_user.id)
+            render json: chat, status: :accepted
+          else
+            render json: chat, status: :accepted
+            chat.destroy
+        end
+        
+    end
+
     private
 
     def chat_type_conditions
