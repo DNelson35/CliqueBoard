@@ -20,8 +20,14 @@ export const messengerApi = createApi({
                 method: 'PATCH',
                 body: message
             })
+        }),
+        deleteConversation: builder.mutation({
+            query: (chat) => ({
+                url: `conversations/${chat.id}`,
+                method: 'DELETE',
+            })
         })
     }),
 })
 
-export const {useGetConversationsQuery, useDeleteMessageMutation, useUpdateMessageMutation} = messengerApi
+export const {useGetConversationsQuery, useDeleteMessageMutation, useUpdateMessageMutation, useDeleteConversationMutation} = messengerApi
