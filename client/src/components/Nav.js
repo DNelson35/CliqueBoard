@@ -17,6 +17,8 @@ import JoinedUserReciver from './JoinedUserReciver.js'
 
 
 function Nav() {
+
+    // test commit
     const user = useSelector(state => state.user.user)
     const navigate = useNavigate()
     const [signOut] = useSignOutUserMutation()
