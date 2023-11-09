@@ -48,6 +48,21 @@ const conversationSlice = createSlice({
                 return initialState
             }
         )
+        builder.addMatcher(
+            messengerApi.endpoints.deleteConversation.matchFulfilled,
+            (state, {payload}) => {
+
+                const chats = state.conversations.map(chat => {
+                    if(chat.id === payload.id){
+                        return payload
+                    } else {
+                        return chat
+                    }
+                })
+                console.log(chats)
+                state.conversations = chats
+            }
+        )
     }
 })
 
