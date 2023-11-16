@@ -87,7 +87,7 @@ function Chat({ recipient, chatType, user, chat, setChat, conversations }) {
   return (
     <div>
       <h1 className='text-3xl font-semibold text-white text-center'>{chatTitle()}</h1>
-      <ul ref={ref} className='flex flex-col w-full h-screen pb-20 overflow-auto scroll-smooth'>
+      <ul ref={ref} className='flex flex-col w-full h-screen pb-32 overflow-auto scroll-smooth '>
         {chatMessages}
       </ul>
       <div className='fixed bottom-0 w-full h-20 border-l-2 border-slate-600 bg-slate-700 opacity-90'>

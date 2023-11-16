@@ -81,7 +81,7 @@ function Messenger({allUsers}) {
           </ul>
         </div>
       </div>
-      <div className='flex flex-col w-3/4 h-screen ml-[25%] bg-slate-900'>
+      <div className='flex flex-col w-3/4 h-screen ml-[25%] bg-slate-900 overflow-hidden'>
         {recipient?.data || chat.id ? 
         <>
           <Chat  recipient={recipient?.data} chatType={recipient?.chat_type} chat={chat} user={currentUser} setChat={setChat} conversations={conversations} />
