@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import image from '../../assets/planning.png'
 import OnlineUsersReceiver from '../../components/OnlineUsersReceiver'
+import image from '../../assets/dashbord.png'
 
 function Welcome() {
 
@@ -19,7 +19,7 @@ function Welcome() {
         </div>
         <div className='flex flex-col justify-center w-1/2 '>
         {/* TODO: replace image with better image */}
-          <img src={image} alt='planning' className='mt-20 h-3/4 w-full' />
+          {image? <img src={image} alt='planning' className='mt-20 mr-10 border inset-1 shadow-lg shadow-black rounded-lg -translate-y-[10%]' /> : null}
         </div>
       </div>
       <div className='flex justify-end h-screen bg-blue-400'>
