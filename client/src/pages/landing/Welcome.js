@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import OnlineUsersReceiver from '../../components/OnlineUsersReceiver'
 import image from '../../assets/dashbord.png'
+import groupImage from '../../assets/group.png'
+import messengerImage from '../../assets/messenger.png'
 
 function Welcome() {
 
@@ -19,10 +21,14 @@ function Welcome() {
         </div>
         <div className='flex flex-col justify-center w-1/2 '>
         {/* TODO: replace image with better image */}
-          {image? <img src={image} alt='planning' className='mt-20 mr-10 border inset-1 shadow-lg shadow-black rounded-lg -translate-y-[10%]' /> : null}
+          <img src={image} alt='dashboard' className='mt-20 mr-10 border inset-1 shadow-lg shadow-black rounded-lg -translate-y-[10%]' />
         </div>
       </div>
       <div className='flex justify-end h-screen bg-blue-400'>
+        <div className='flex flex-col justify-center w-1/2 '>
+          {/* TODO: replace image with better image */}
+          <img src={groupImage} alt='group' className='mt-20 ml-10 border inset-1 shadow-lg shadow-black rounded-lg -translate-y-[10%]' />
+        </div>
         <div className='flex flex-col justify-center w-1/2 ml-40'>
           <h1 className='text-white text-7xl font-bold'>Manage Groups</h1>
           <p className='pt-6 text-white text-xl font-bold w-[70%]'>Manage and Join groups. CliqueBoard groups have access to a interactive calendar for scheduling meetings, and other events.</p>
@@ -32,6 +38,10 @@ function Welcome() {
         <div className='flex flex-col justify-center w-1/2 ml-40'>
           <h1 className='text-white text-7xl font-bold'>Messenger</h1>
           <p className='pt-6 text-white text-xl font-bold w-[70%]'>CliqueBoard strives to keep groups and group members connected. Using the messenger group members can message users that are in their groups. Each group also comes with a group messenger for all members to host discussions.</p>
+        </div>
+        <div className='flex flex-col justify-center w-1/2 '>
+        {/* TODO: replace image with better image */}
+          <img src={messengerImage} alt='messenger' className='mt-20 mr-10 border inset-1 shadow-lg shadow-black rounded-lg -translate-y-[10%]' />
         </div>
       </div>
       <OnlineUsersReceiver/>
