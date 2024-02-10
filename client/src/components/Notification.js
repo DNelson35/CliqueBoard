@@ -46,6 +46,7 @@ function Notification({note}) {
         dispatch(joinedGroup(newGroup.data))
         dispatch(addGroupToUser(newGroup.data))
         dispatch(addConversation(newGroup.data.conversation))
+        setOpen(false)
       }
     }
 
