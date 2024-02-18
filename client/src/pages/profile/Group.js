@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
-import Calendar from '../../components/Calendar'
-import EventDateForm from '../../components/EventDateForm'
+import Calendar from '../../components/group/Calendar'
+import EventDateForm from '../../components/group/EventDateForm'
 
 function Group({ allUsers , refetch }) {
   const [filteredUsers, setFilteredUsers] = useState(allUsers)

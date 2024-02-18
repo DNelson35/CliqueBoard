@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import OnlineUsersReceiver from '../../components/OnlineUsersReceiver'
+import OnlineUsersReceiver from '../../components/receivers/OnlineUsersReceiver'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 function DashBoard() {

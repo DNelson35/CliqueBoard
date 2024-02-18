@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import OnlineUsersReceiver from '../../components/OnlineUsersReceiver'
+import OnlineUsersReceiver from '../../components/receivers/OnlineUsersReceiver'
 import image from '../../assets/dashbord.png'
 import groupImage from '../../assets/group.png'
 import messengerImage from '../../assets/messenger.png'

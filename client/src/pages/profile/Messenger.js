@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import Chat from '../../components/Chat'
+import Chat from '../../components/chat/Chat'
 
 function Messenger({allUsers}) {
 
