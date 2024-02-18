@@ -23,7 +23,7 @@ function EventDateForm({ eventArg, group, setIsOpen }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const  newEvent = await createEvent(eventData)
+        await createEvent(eventData)
         setIsOpen(false)
     }
 

@@ -4,7 +4,7 @@ import {RiNotification3Line} from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { addInvite } from '../../reducers/userSlice'
 
-const InvitationReceiver = ({user, open, setOpen}) => {
+function InvitationReceiver({user, open, setOpen}) {
   const dispatch = useDispatch()
 
   useEffect(() => {

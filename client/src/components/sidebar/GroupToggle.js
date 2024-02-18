@@ -6,7 +6,7 @@ import { addGroupToUser } from '../../reducers/userSlice'
 import { addConversation } from '../../reducers/conversationSlice'
 
 function GroupToggle({isOpen}) {
-    const user = useSelector(state => state.user.user)
+    
     const groups = useSelector(state => state.groups.groups)
     const [isOn, setIsOn] = useState(false)
     const [createGroup] = useCreateGroupsMutation()

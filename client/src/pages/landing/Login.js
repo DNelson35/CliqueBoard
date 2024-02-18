@@ -1,7 +1,6 @@
-import {useState, useEffect} from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLoginUserMutation} from "../../api/authApi"
-import { useGetGroupsQuery } from '../../api/groupApi'
 
 
 const Login = () => {

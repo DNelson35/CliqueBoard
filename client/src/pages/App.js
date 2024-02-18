@@ -27,7 +27,6 @@ function App() {
 
   useEffect(()=>{
     if(user){
-      console.log("just ran")
       refetchGroup()
       refetchConversation()
     }

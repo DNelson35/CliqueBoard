@@ -41,7 +41,6 @@ function Calendar({ group, setEventArg, setIsOpen, isOpen, eventOpen, setEventOp
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         weekends={true}
-        // dateClick={handleDateClick}
         selectable={true}
         select={handleDateClick}
         events={events}
