@@ -11,7 +11,7 @@ const groupSlice = createSlice({
   initialState,
   reducers: {
     setGroups: (state, action) => {
-      return action.payload
+      state.groups = action.payload
     },
     addCalendarEvent: (state, action) => {
       const group = state.groups.find(group => action.payload.group_id === group.id)
