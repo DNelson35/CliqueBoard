@@ -1,4 +1,4 @@
-import Nav from "../components/Nav"
+import Nav from "../components/nav/Nav"
 import Login from "./landing/Login"
 import Profile from './profile/Profile'
 import Welcome from './landing/Welcome'
@@ -7,13 +7,14 @@ import Group from "./profile/Group"
 import DashBoard from "./profile/DashBoard"
 import About from "./landing/about"
 import Future from "./landing/future"
-import ProtectedRoutes from '../components/ProtectedRoutes'
+import ProtectedRoutes from '../components/nav/ProtectedRoutes'
 import {Routes, Route, useLocation} from 'react-router-dom'
 import { useAllUsersQuery, useCheckUserQuery } from '../api/authApi'
 import { useSelector } from 'react-redux'
 import { useGetGroupsQuery } from "../api/groupApi"
 import { useGetConversationsQuery } from "../api/messengerApi"
 import Messenger from "./profile/Messenger"
+import { useEffect } from "react"
 
 function App() {
   const location = useLocation()
@@ -21,8 +22,16 @@ function App() {
   
   const {isLoading } = useCheckUserQuery()
   const { data: allUsers, refetch } = useAllUsersQuery(undefined, { skip: !user })
-  useGetGroupsQuery(undefined, { skip: !user })
-  useGetConversationsQuery(undefined, { skip: !user })
+  const { refetch: refetchGroup } = useGetGroupsQuery(undefined, { skip: !user })
+  const { refetch: refetchConversation } = useGetConversationsQuery(undefined, { skip: !user })
+
+  useEffect(()=>{
+    if(user){
+      console.log("just ran")
+      refetchGroup()
+      refetchConversation()
+    }
+  },[user, refetchGroup, refetchConversation])
 
   return isLoading ? <div>loading...</div> : (
     <div >
