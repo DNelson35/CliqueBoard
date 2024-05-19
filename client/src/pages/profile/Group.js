@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useSendInvitationMutation } from '../../api/groupApi'
@@ -13,6 +13,8 @@ function Group({ allUsers , refetch }) {
   const [eventOpen, setEventOpen]= useState(false)
   const [eventArg, setEventArg] = useState(null)
  
+  const ref = useRef()
+
   const {groupId} = useParams()
   const groups = useSelector(state => state.groups.groups)
   
@@ -37,6 +39,20 @@ function Group({ allUsers , refetch }) {
     setFilteredUsers(allUsers?.filter(user => user.name.toUpperCase().includes(search.toUpperCase())))
   },[search, allUsers])
 
+  useEffect(() => {
+    const closeInvites = (e) => {
+      if (!ref.current?.contains(e.target) && e.target !== document.querySelector('.invite-button')){
+        setDisplayed(false)
+      }
+    }
+
+    document.addEventListener('mousedown', closeInvites)
+
+    return () => {
+      document.removeEventListener('mousedown', closeInvites)
+    }
+  },[])
+
   const onChange = (e) => {
     setSearch(e.target.value)
   }
@@ -48,11 +64,11 @@ function Group({ allUsers , refetch }) {
           <p className='text-4xl font-bold'>{group?.group_name}</p>
         </div>
         <div className="flex-grow flex justify-end items-start w-1/2 mr-5">
-          <button className=' w-auto h-auto bg-blue-400 rounded-lg px-2 py-1' onClick={() => setDisplayed(!displayed) & refetch()}>Invite 🔍</button>
+          <button className=' w-auto h-auto bg-blue-400 rounded-lg px-2 py-1 invite-button' onClick={() => setDisplayed(!displayed) & refetch()}>Invite 🔍</button>
         </div>
       </div>
       {displayed?
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-slate-600 z-20 ">
+        <div ref={ref} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-slate-600 z-20 ">
             <div className='relative flex-col items-center'>
               <input value={search} onChange={onChange} placeholder='Search...' className='w-full mb-2' />
               <ul >
