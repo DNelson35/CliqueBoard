@@ -5,7 +5,7 @@ import { useCreateGroupsMutation } from '../../api/groupApi'
 import { addGroupToUser } from '../../reducers/userSlice'
 import { addConversation } from '../../reducers/conversationSlice'
 
-function GroupToggle({isOpen}) {
+function GroupToggle({isOpen, setIsOpen, forwardRef}) {
     
     const groups = useSelector(state => state.groups.groups)
     const [isOn, setIsOn] = useState(false)
@@ -21,7 +21,10 @@ function GroupToggle({isOpen}) {
     const groupsList = groups?.map(group => (
         <div key={group.id} className='flex justify-center my-2'>
             <div className='flex justify-center  items-center bg-slate-700 hover:bg-slate-800 w-1/2 h-10 rounded-xl'>
-                <h1 className='text-white font-bold' onClick={() => navigate(`/group/${group.id}`)}>{group.group_name}</h1>
+                <h1 className='text-white font-bold' onClick={() => {
+                    navigate(`/group/${group.id}`)
+                    setIsOpen(false)
+                }}>{group.group_name}</h1>
             </div>
         </div>
     ))
@@ -38,7 +41,7 @@ function GroupToggle({isOpen}) {
     }
     
   return (
-    <div className={`fixed top-0 left-0 h-screen w-1/5 bg-slate-500 transition-all duration-300 z-10 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div ref={forwardRef} className={`fixed top-0 left-0 h-screen w-1/5 bg-slate-500 transition-all duration-300 z-10 ${isOpen ? 'translate-x-0' : '-translate-x-full'} notification-icon`}>
         <div className='flex justify-end'>
             <button className='w-20 h-10 rounded-lg bg-purple-400 hover:bg-purple-500 active:bg-purple-600 m-3 text-white' onClick={() => setIsOn(!isOn)}>+ Group</button>
         </div>
