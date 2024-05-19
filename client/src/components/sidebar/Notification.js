@@ -15,17 +15,18 @@ function Notification({note}) {
     const [deleteInvitation] = useDeleteInvitationMutation()
     const [joinGroup] = useJoinGroupMutation()
     
-    useEffect(() => {
-      const closeNotifications = (e) => {
-        if(e.target.classList.contains('notification-icon')){
-          setOpen(false)
-        }
-      }
-      document.addEventListener('mousedown', closeNotifications)
-      return () => {
-        document.removeEventListener('mousedown', closeNotifications)
-      }
-    }, [])
+    // for now it seems like I handled this in nav 
+    // useEffect(() => {
+    //   const closeNotifications = (e) => {
+    //     if(e.target.classList.contains('notification-icon')){
+    //       setOpen(false)
+    //     }
+    //   }
+    //   document.addEventListener('mousedown', closeNotifications)
+    //   return () => {
+    //     document.removeEventListener('mousedown', closeNotifications)
+    //   }
+    // }, [])
 
     const onChange = (e) => {
       setCode({...code, access_code: e.target.value})
