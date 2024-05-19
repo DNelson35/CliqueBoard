@@ -38,6 +38,7 @@ function Nav() {
         const closeNotifications = (e) => {
             if (!ref.current?.contains(e.target) && !e.target.closest('.notification-icon')) {
               setNotificationOpen(false)
+              setIsOpen(false)
             }
           }
       
@@ -66,9 +67,9 @@ function Nav() {
                         <div className="mt-auto">
                             <CgLogOut title='logout' onClick={() => logOut()} className='text-white text-3xl'/>
                         </div>
-                        <FaGripLinesVertical onClick={toggleVerticalBar} className='absolute top-1/2 right-0 text-white text-2xl'/>
+                        <FaGripLinesVertical onClick={toggleVerticalBar} className='absolute top-1/2 right-0 text-white text-2xl notification-icon'/>
                     </nav>
-                    <GroupToggle isOpen={isOpen}/>
+                    <GroupToggle isOpen={isOpen} setIsOpen={setIsOpen} forwardRef={ref}/>
                     <NotificationDisplay forwardRef={ref} notifcationOpen={notifcationOpen} user={user}/>
                     <ConversationReciver />
                     <MessengerReciver/>
